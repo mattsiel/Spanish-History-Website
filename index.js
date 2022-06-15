@@ -1,21 +1,26 @@
-const { Pool, Client } = require('pg')
-const connectionString = 'postgres://postgres:postgrespw@localhost:49157'
-const makeTable = 'CREATE TABLE "public.person" ("name_first" varchar NOT NULL, "name_last" varchar NOT NULL)'
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+const db = require('./queries');
+const port = 3000;
 
-const insertQuery = {
-    text: 'INSERT INTO "public.person" VALUES($1, $2)',
-    values: ['brianc', 'brian.m.carlson@gmail.com'],
-}
+app.use(bodyParser.json());
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 
-const select = 'SELECT * FROM "public.person"';
+app.get('/', (request, response) => {
+  response.json({ info: 'Node.js, Express, and Postgres API' })
+});
 
-const pool = new Pool({
-  connectionString,
-})
+app.get('/users', db.getUsers);
+app.get('/users/:id', db.getUserById);
+app.post('/users', db.createUser);
+app.put('/users/:id', db.updateUser);
+app.delete('/users/:id', db.deleteUser);
 
-
-pool.query(select, (err, res) => {
-    console.log(err, res)
-    pool.end()
-})
-  
+app.listen(port, () => {
+  console.log(`App running on port ${port}.`)
+});
