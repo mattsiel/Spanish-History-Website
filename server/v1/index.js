@@ -2,7 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const db = require('./queries');
+const swaggerUI = require("swagger-ui-express");
+const swaggerConf = require("./swagger-config");
 const port = 3000;
+
+// api routes
+const personRouteV1 = require("./person.js");
 
 app.use(bodyParser.json());
 app.use(
@@ -11,16 +16,23 @@ app.use(
   })
 );
 
+app.use(
+  "/api-docs",
+  swaggerUI.serve,
+  swaggerUI.setup(swaggerConf.specs, swaggerConf.uiOptions)
+);
+
 app.get('/', (request, response) => {
   response.json({ info: 'Node.js, Express, and Postgres API' })
 });
 
-app.get('/users', db.getUsers);
-app.get('/users/:id', db.getUserById);
-app.post('/users', db.createUser);
-app.put('/users/:id', db.updateUser);
-app.delete('/users/:id', db.deleteUser);
+function useV1(req, res, next) {
+  app.get('/users', personRouteV1);
+}
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 });
+
+
+module.exports = app;

@@ -3,9 +3,6 @@ const swaggerJsDoc = require("swagger-jsdoc");
 // Endpoints are grouped by tags in Swagger Docs
 const tags = [
   {
-    name: "API",
-  },
-  {
     name: "Person",
     description: "View, Create, Edit, Delete people",
   },
@@ -54,10 +51,8 @@ const swaggerOptions = {
     tags: tags,
   },
   apis: [
-    `${__dirname}/express.js`,
-    `${__dirname}/routes/v${process.env.API_VERSION}/*.js`,
-    `${__dirname}/routes/v${process.env.API_VERSION}/*/*.js`,
-    `${__dirname}/models/*.js`,
+    `${__dirname}/routes/v1/*.yaml`,
+    `${__dirname}/routes/v1/*/*.yaml`,
   ],
 };
 
