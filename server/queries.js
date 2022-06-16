@@ -1,5 +1,4 @@
 const Pool = require('pg').Pool
-const connectionString = 'postgres://postgres:postgrespw@localhost:49154';
 const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
