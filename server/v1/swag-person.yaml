@@ -65,31 +65,46 @@ definitions:
     properties:
       person_id:
         type: number
-        description: User's unique identification.
         example: 123123123
       name_first:
         type: string
-        description: User's unique identification.
         example: 123123123
       name_by:
         type: number
-        description: User's unique identification.
         example: 123123123
       name_middle:
         type: number
-        description: User's unique identification.
         example: 123123123
       name_maiden:
         type: number
-        description: User's unique identification.
         example: 123123123
-      name_last: string
-      gender: string
-      date_birth: number
-      date_death: number
-      place_birth: string
-      place_death: string
-      cause_death: string
-      family_id: number
-      person_source: string
-      dynasty_id: number
+      name_last:
+        type: number
+        example: 123123123
+      gender:
+        type: number
+        example: 123123123
+      date_birth:
+        type: number
+        example: 123123123
+      date_death:
+        type: number
+        example: 123123123
+      place_birth:
+        type: number
+        example: 123123123
+      place_death:
+        type: number
+        example: 123123123
+      cause_death:
+        type: number
+        example: 123123123
+      family_id:
+        type: number
+        example: 123123123
+      person_source:
+        type: number
+        example: 123123123
+      dynasty_id:
+        type: number
+        example: 123123123
