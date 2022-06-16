@@ -40,7 +40,7 @@ const swaggerOptions = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "CITZ HybridWorkplace",
+      title: "IB Swagger Documentation",
       version: process.env.API_VERSION || "undefined",
       description: `### API Documentation
       \n\n**This API uses JWT tokens for authentication. Steps to auth:**
@@ -51,15 +51,15 @@ const swaggerOptions = {
     tags: tags,
   },
   apis: [
-    `${__dirname}/routes/v1/*.yaml`,
-    `${__dirname}/routes/v1/*/*.yaml`,
+    `./*.yaml`,
+    `./**/*.yaml`
   ],
 };
 
 const specs = swaggerJsDoc(swaggerOptions);
 
 const uiOptions = {
-  customSiteTitle: "Swagger Documentation",
+  customSiteTitle: "IB Swagger Documentation",
 };
 
 module.exports = { specs, uiOptions };
