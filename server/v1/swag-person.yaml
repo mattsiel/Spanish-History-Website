@@ -48,12 +48,16 @@ paths:
       produces:
       - application/json
       parameters:
-      - in: body
-        name: removes person
-        description: removes person
-        required: false
-        schema:
-          $ref: '#/definitions/person' 
+      responses:
+        201:
+          description: Person Successfully Removed.
+    get:                
+      tags:               
+        - Person         
+      summary: removes
+      produces:
+      - application/json
+      parameters:
       responses:
         201:
           description: Person Successfully Removed.
@@ -65,46 +69,46 @@ definitions:
     properties:
       person_id:
         type: number
-        example: 123123123
       name_first:
         type: string
-        example: 123123123
+        example: James
       name_by:
-        type: number
-        example: 123123123
+        type: string
+        example: I
       name_middle:
-        type: number
-        example: 123123123
+        type: string
+        example: Perez
       name_maiden:
-        type: number
-        example: 123123123
+        type: string
+        example: 
       name_last:
-        type: number
-        example: 123123123
+        type: string
+        example: of Barcelona
       gender:
-        type: number
-        example: 123123123
+        type: string
+        example: M
       date_birth:
         type: number
-        example: 123123123
+        example: 02021208
       date_death:
         type: number
-        example: 123123123
+        example: 27071276
       place_birth:
-        type: number
-        example: 123123123
+        type: string
+        example: Montpellier
       place_death:
-        type: number
-        example: 123123123
+        type: string
+        example: Alzira
       cause_death:
-        type: number
+        type: string
         example: 123123123
       family_id:
-        type: number
-        example: 123123123
-      person_source:
         type: number
         example: 123123123
       dynasty_id:
         type: number
         example: 123123123
+      titles:
+        type: array
+        example: {Kingdom of Aragon, County of Montpellier}
+      
