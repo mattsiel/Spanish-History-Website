@@ -17,3 +17,8 @@ const swaggerOptions = {
     `./**/*.yaml`
   ],
 };
+
+const {person_id, name_first, name_by, name_middle, name_maiden, name_last,
+      gender, date_birth, date_death,
+      place_birth, place_death, cause_death,
+      family_id, person_source, dynasty_id, } = request.body;

@@ -9,11 +9,11 @@ const pool = new Pool({
 
 
 const getUsers = (request, response) => {
-    pool.query('SELECT * FROM users', (error, results) => {
-            if (error) {
-            throw error
-            }
-            response.status(200).json(results.rows)
+    pool.query('SELECT * FROM person', (error, results) => {
+      if (error) {
+      throw response.status(400).send();
+      }
+      response.status(200).send(results.rows);
     })
 }
 
@@ -66,10 +66,15 @@ const deleteUser = (request, response) => {
   })
 }
 
+const test = (request, response) => {
+    response.status(200).send(`connected to db`)
+}
+
 module.exports = {
     getUsers,
     getUserById,
     createUser,
     updateUser,
     deleteUser,
+    test
 }

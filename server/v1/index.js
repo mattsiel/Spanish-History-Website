@@ -1,12 +1,14 @@
+require('dotenv').config();
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const swaggerUI = require("swagger-ui-express");
 const swaggerConf = require("./swagger-config");
-const port = 3000;
+const port = 3100;
 
 // api routes
-const personRouteV1 = require("./person.js");
+const personRouteV1 = require("./routes/person.js");
 
 app.use(bodyParser.json());
 app.use(
@@ -22,20 +24,18 @@ app.use(
 );
 
 app.get('/', (request, response) => {
-  response.json({ info: 'Node.js, Express, and Postgres API' })
+  response.json({ info: `the vars are ${process.env.PGHOST}` });
 });
 
-function useV1(req, res, next) {
-  app.get('/users', personRouteV1);
-}
+app.get('/users', personRouteV1.getUsers);
+app.get('/users/:id', personRouteV1.getUserById);
+app.post('/users', personRouteV1.createUser);
+app.put('/users/:id', personRouteV1.updateUser);
+app.delete('/users/:id', personRouteV1.deleteUser);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 });
-
-app.use(
-  "/api/v1", useV1
-);
 
 
 module.exports = app;

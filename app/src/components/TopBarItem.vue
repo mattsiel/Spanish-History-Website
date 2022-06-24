@@ -15,6 +15,7 @@
   width: auto;
   margin: 2rem;
   display: block;
+  background-color:brown;
   outline: 0;
 }
 
