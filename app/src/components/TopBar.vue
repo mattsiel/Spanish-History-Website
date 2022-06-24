@@ -5,33 +5,31 @@
 
 <template>
     <div id="topbar" >
-            <RouterLink to="" class="topbarbox" >
+            <RouterLink to="/home" class="topbarbox" >
                 <TopBarItem>
                     <template #heading>Home</template>
                 </TopBarItem>
             </RouterLink>
 
-            <RouterLink to="" class="topbarbox" >
+            <RouterLink to="/maps" class="topbarbox" >
                 <TopBarItem>
-                    <template #heading>Home</template>
+                    <template #heading>Maps</template>
                 </TopBarItem>
             </RouterLink>
 
-            <RouterLink to="" class="topbarbox" >
+             <TopBarItem>
+                    <template #heading>The Iberia Project</template>
+            </TopBarItem>
+
+            <RouterLink to="/families" class="topbarbox" >
                 <TopBarItem>
-                    <template #heading>Home</template>
+                    <template #heading>Families</template>
                 </TopBarItem>
             </RouterLink>
 
-            <RouterLink to="" class="topbarbox" >
+            <RouterLink to="/about" class="topbarbox" >
                 <TopBarItem>
-                    <template #heading>Home</template>
-                </TopBarItem>
-            </RouterLink>
-
-            <RouterLink to="" class="topbarbox" >
-                <TopBarItem>
-                    <template #heading>Home</template>
+                    <template #heading>About</template>
                 </TopBarItem>
             </RouterLink>
     </div>
@@ -50,13 +48,11 @@
 }
 
 .topbarbox{
-    background-color: aquamarine;
     height:100%;
-    width:20%;
+    width:30%;
     justify-content: center;
     display:flex;
     text-decoration: none;
-    border: 5px solid blue;
 }
 
 </style>

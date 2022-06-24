@@ -15,20 +15,19 @@ export default {
 <style scoped>
 .item {
   top:-2rem;
-  background-color: #f44336;
-  color: white;
   height:100%;
   width:100%;
   text-align: center;
+  background-color: whitesmoke;
   display: inline-block;
 }
 
 .item:hover{
-  background-color: white;
+  background-color: lightgrey;
 }
 
 .item:active{
-  background-color: blueviolet;
+  background-color: grey;
 }
 
 h3 {
