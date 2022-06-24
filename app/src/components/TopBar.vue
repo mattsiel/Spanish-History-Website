@@ -1,42 +1,62 @@
 <script setup>
-  import TopBarItem from './TopBarItem.vue';
+    import TopBarItem from './TopBarItem.vue';
+    import { RouterLink, RouterView } from 'vue-router';
 </script>
 
 <template>
     <div id="topbar" >
-        <TopBarItem>
-            <template #heading>Documentation</template>
-        </TopBarItem>
+            <RouterLink to="" class="topbarbox" >
+                <TopBarItem>
+                    <template #heading>Home</template>
+                </TopBarItem>
+            </RouterLink>
 
-        <TopBarItem>
-            <template #heading>Tooling</template>
-        </TopBarItem>
+            <RouterLink to="" class="topbarbox" >
+                <TopBarItem>
+                    <template #heading>Home</template>
+                </TopBarItem>
+            </RouterLink>
 
-        <TopBarItem>
-            <template #heading>Ecosystem</template>
-        </TopBarItem>
+            <RouterLink to="" class="topbarbox" >
+                <TopBarItem>
+                    <template #heading>Home</template>
+                </TopBarItem>
+            </RouterLink>
 
-        <TopBarItem>
-            <template #heading>Community</template>
-        </TopBarItem>
+            <RouterLink to="" class="topbarbox" >
+                <TopBarItem>
+                    <template #heading>Home</template>
+                </TopBarItem>
+            </RouterLink>
 
-        <TopBarItem>
-            <template #heading>Support Vue</template>
-        </TopBarItem>
+            <RouterLink to="" class="topbarbox" >
+                <TopBarItem>
+                    <template #heading>Home</template>
+                </TopBarItem>
+            </RouterLink>
     </div>
 </template>
 
 
 <style>
 #topbar {
-  left:0rem;
-  top:0rem;
-  background-color: bisque;
-  height:100px;
-  width:100%;
-  z-index:1;
-  overflow:hidden;
-  position:relative;
-  animation : animateDown .4s;
+    top:0rem;
+    background-color: bisque;
+    height:4rem;
+    width:100%;
+    overflow:hidden;
+    position:sticky;
+    display: flex;
 }
+
+.topbarbox{
+    background-color: aquamarine;
+    height:100%;
+    width:20%;
+    justify-content: center;
+    display:flex;
+    text-decoration: none;
+    border: 5px solid blue;
+}
+
 </style>
