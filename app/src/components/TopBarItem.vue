@@ -1,32 +1,39 @@
+<script>
+export default {
+}
+
+</script>
+
 <template>
   <div class="item">
-    <div class="details">
-      <h3>
-        <slot name="heading"></slot>
-      </h3>
-      <slot></slot>
-    </div>
+    <h3>
+      <slot name="heading"></slot>
+    </h3>
   </div>
 </template>
 
 <style scoped>
 .item {
-  float: left;
-  width: auto;
-  margin: 2rem;
-  display: block;
-  background-color:brown;
-  outline: 0;
+  top:-2rem;
+  height:100%;
+  width:100%;
+  text-align: center;
+  background-color: whitesmoke;
+  display: inline-block;
 }
 
-.details {
-  flex: 1;
+.item:hover{
+  background-color: lightgrey;
+}
+
+.item:active{
+  background-color: grey;
 }
 
 h3 {
   font-size: 1.2rem;
   font-weight: 500;
-  margin-bottom: 0.4rem;
+  margin: 0.4rem;
   color: var(--color-heading);
 }
 </style>

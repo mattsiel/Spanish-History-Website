@@ -1,42 +1,58 @@
 <script setup>
-  import TopBarItem from './TopBarItem.vue';
+    import TopBarItem from './TopBarItem.vue';
+    import { RouterLink, RouterView } from 'vue-router';
 </script>
 
 <template>
     <div id="topbar" >
-        <TopBarItem>
-            <template #heading>Documentation</template>
-        </TopBarItem>
+            <RouterLink to="/home" class="topbarbox" >
+                <TopBarItem>
+                    <template #heading>Home</template>
+                </TopBarItem>
+            </RouterLink>
 
-        <TopBarItem>
-            <template #heading>Tooling</template>
-        </TopBarItem>
+            <RouterLink to="/maps" class="topbarbox" >
+                <TopBarItem>
+                    <template #heading>Maps</template>
+                </TopBarItem>
+            </RouterLink>
 
-        <TopBarItem>
-            <template #heading>Ecosystem</template>
-        </TopBarItem>
+             <TopBarItem>
+                    <template #heading>The Iberia Project</template>
+            </TopBarItem>
 
-        <TopBarItem>
-            <template #heading>Community</template>
-        </TopBarItem>
+            <RouterLink to="/families" class="topbarbox" >
+                <TopBarItem>
+                    <template #heading>Families</template>
+                </TopBarItem>
+            </RouterLink>
 
-        <TopBarItem>
-            <template #heading>Support Vue</template>
-        </TopBarItem>
+            <RouterLink to="/about" class="topbarbox" >
+                <TopBarItem>
+                    <template #heading>About</template>
+                </TopBarItem>
+            </RouterLink>
     </div>
 </template>
 
 
 <style>
 #topbar {
-  left:0rem;
-  top:0rem;
-  background-color: bisque;
-  height:100px;
-  width:100%;
-  z-index:1;
-  overflow:hidden;
-  position:relative;
-  animation : animateDown .4s;
+    top:0rem;
+    background-color: bisque;
+    height:4rem;
+    width:100%;
+    overflow:hidden;
+    position:sticky;
+    display: flex;
 }
+
+.topbarbox{
+    height:100%;
+    width:30%;
+    justify-content: center;
+    display:flex;
+    text-decoration: none;
+}
+
 </style>
