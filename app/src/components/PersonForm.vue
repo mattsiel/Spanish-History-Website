@@ -12,7 +12,7 @@
       type="number"
       id="birthDate"
       class="form-control"
-      v-model.number="userData.satisfaction">
+      v-model.number="personData.satisfaction">
 </div>    
 </template>
 
@@ -20,7 +20,7 @@
   export default {
     data() {
       return {
-        userData: {
+        personData: {
         firstName: "",
         byName: "",
         middleName: "",

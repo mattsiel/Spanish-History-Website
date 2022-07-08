@@ -20,7 +20,7 @@ const pool = new Pool({
 
 class personFunctions {
   getPersons(request, response) {
-    pool.query('SELECT * FROM public.person', (error, results) => {
+    pool.query('SELECT * FROM person', (error, results) => {
       if (error) {
         throw error;
       }

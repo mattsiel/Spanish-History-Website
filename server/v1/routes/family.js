@@ -17,7 +17,7 @@ const pool = new Pool({
 
 class personFunctions {
   getFamily(request, response) {
-    pool.query('SELECT * FROM public.family', (error, results) => {
+    pool.query('SELECT * FROM family', (error, results) => {
       if (error) {
         throw error;
       }
@@ -28,7 +28,7 @@ class personFunctions {
   getFamilyById(request, response) {
     const id = parseInt(request.params.id, 10);
 
-    pool.query('SELECT * FROM family WHERE id = $1', [id], (error, results) => {
+    pool.query('SELECT * FROM family WHERE family_id = $1', [id], (error, results) => {
       if (error) {
         throw error;
       }
@@ -39,15 +39,15 @@ class personFunctions {
   createFamily(request, response) {
     const {
       family_id,
-	    family_name,
-	    dynasty_id,
-	    family_head,
-	  family_creator_id,
+      family_name,
+      dynasty_id,
+      family_head,
+      family_creator_id,
     } = request.body;
 
     pool.query(
       'INSERT INTO users VALUES ($1, $2, $3, $4, $5)',
-      [family_id, family_name, dynasty_id, family_head, family_creator_id,], 
+      [family_id, family_name, dynasty_id, family_head, family_creator_id],
       (error, results) => {
         if (error) {
           throw error;
@@ -60,18 +60,20 @@ class personFunctions {
   updateFamily(request, response) {
     const id = parseInt(request.params.id, 10);
     const {
-      name_first, name_by, name_middle, name_maiden, name_last,
-      gender, date_birth, date_death,
-      place_birth, place_death, cause_death,
-      family_id, person_source, dynasty_id,
+      family_id,
+      family_name,
+      dynasty_id,
+      family_head,
+      family_creator_id,
     } = request.body;
 
     pool.query(
-      'UPDATE users SET name = $1, email = $2 WHERE id = $3',
-      [name_first, name_by, name_middle, name_maiden, name_last,
-        gender, date_birth, date_death,
-        place_birth, place_death, cause_death,
-        family_id, person_source, dynasty_id],
+      'UPDATE users SET family_name = $2, dynasty_id = $3, family_head = $4, family_creator_id = $5 WHERE id = $1',
+      [family_id,
+        family_name,
+        dynasty_id,
+        family_head,
+        family_creator_id],
       (error, results) => {
         if (error) {
           throw error;
@@ -84,7 +86,7 @@ class personFunctions {
   deleteFamily(request, response) {
     const id = parseInt(request.params.id, 10);
 
-    pool.query('DELETE FROM family WHERE id = $1', [id], (error, results) => {
+    pool.query('DELETE FROM family WHERE family_id = $1', [id], (error, results) => {
       if (error) {
         throw error;
       }
