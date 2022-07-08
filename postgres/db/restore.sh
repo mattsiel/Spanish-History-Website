@@ -20,5 +20,5 @@ select file in "${files[@]}"; do
 done
 
 
-cat $latest | docker exec -i postgres-ibe psql -h localhost -p 4000 -U matt -d postgres
+cat $latest | docker exec -i postgres-ibe psql -h $PGHOST -p $PGPORT -U $PGUSER -d $PGDATABASE
 cd ../

@@ -8,11 +8,9 @@ services:
       context: .
       target: ibe-db
     environment:
-      - POSTGRES_USER=matt 
-      - POSTGRES_PASSWORD=theone 
-      - POSTGRES_DB=mattsi 
-      - POSTGRES_HOST=localhost 
-      - POSTGRES_PORT=4100 
+      - POSTGRES_USER=${PGUSER}
+      - POSTGRES_PASSWORD=${PGPASSWORD}
+      - POSTGRES_DB=${PGDATABASE}
     ports:
       - 4000:4000
     command: -p 4000 

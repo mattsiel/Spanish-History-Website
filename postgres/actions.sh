@@ -1,5 +1,11 @@
 #!/bin/bash
 
+set -o allexport
+source ./.env
+set +o allexport
+
+echo "$PGHOST"
+
 PS3='What action on the Database do you want to do : '
 options=("Initialize" "Backup" "Restore" "Quit")
 select opt in "${options[@]}"
