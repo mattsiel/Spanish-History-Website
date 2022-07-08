@@ -1,7 +1,4 @@
-FROM postgres:12 as db
-WORKDIR /sql
-
-RUN mkdir -p /db/
-
-COPY ./db/dump.sql ./db/dump.sql
+FROM postgres:12 as ibe-db
+WORKDIR /app
 COPY ./db/init.sh /docker-entrypoint-initdb.d
+COPY ./db/dump.sql ./db/dump.sql
