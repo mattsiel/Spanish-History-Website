@@ -1,11 +1,8 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable no-unused-vars */
-/* eslint-disable new-cap */
 /* eslint-disable camelcase */
-/* eslint-disable linebreak-style */
 /* eslint-disable class-methods-use-this */
-const { send } = require('process');
-
+/* eslint-disable linebreak-style */
 require('dotenv').config();
 
 const { Pool } = require('pg');
@@ -19,8 +16,8 @@ const pool = new Pool({
 });
 
 class personFunctions {
-  getPersons(request, response) {
-    pool.query('SELECT * FROM public.person', (error, results) => {
+  getFamily(request, response) {
+    pool.query('SELECT * FROM public.family', (error, results) => {
       if (error) {
         throw error;
       }
@@ -28,10 +25,10 @@ class personFunctions {
     });
   }
 
-  getPersonById(request, response) {
+  getFamilyById(request, response) {
     const id = parseInt(request.params.id, 10);
 
-    pool.query('SELECT * FROM person WHERE person_id = $1', [id], (error, results) => {
+    pool.query('SELECT * FROM family WHERE id = $1', [id], (error, results) => {
       if (error) {
         throw error;
       }
@@ -39,12 +36,23 @@ class personFunctions {
     });
   }
 
-  createPerson(request, response) {
-    const { name_first, gender } = request.body;
+  createFamily(request, response) {
+    const {
+      family_id,
+	    family_name,
+	    dynasty_id,
+	    family_head,
+	  family_creator_id,
+    } = request.body;
 
     pool.query(
-      'INSERT INTO person(name_first, gender) VALUES ($1, $2)',
-      [name_first, gender],
+      'INSERT INTO users VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12 ,$13, $14)',
+      [name_first, name_by, name_middle, name_maiden, name_last,
+        gender, date_birth, date_death,
+        place_birth, place_death, cause_death,
+        family_id, person_source, dynasty_id],
+
+        [family_id, family_name, dynasty_id, family_head, family_creator_id,],
 
       (error, results) => {
         if (error) {
@@ -55,8 +63,7 @@ class personFunctions {
     );
   }
 
-  // updates a person
-  updatePerson(request, response) {
+  updateFamily(request, response) {
     const id = parseInt(request.params.id, 10);
     const {
       name_first, name_by, name_middle, name_maiden, name_last,
@@ -66,7 +73,7 @@ class personFunctions {
     } = request.body;
 
     pool.query(
-      'UPDATE person SET name = $1, email = $2 WHERE id = $3',
+      'UPDATE users SET name = $1, email = $2 WHERE id = $3',
       [name_first, name_by, name_middle, name_maiden, name_last,
         gender, date_birth, date_death,
         place_birth, place_death, cause_death,
@@ -80,10 +87,10 @@ class personFunctions {
     );
   }
 
-  deletePerson(request, response) {
-    const id = parseInt(request.params.id);
+  deleteFamily(request, response) {
+    const id = parseInt(request.params.id, 10);
 
-    pool.query('DELETE FROM person WHERE person_id = $1', [id], (error, results) => {
+    pool.query('DELETE FROM users WHERE id = $1', [id], (error, results) => {
       if (error) {
         throw error;
       }
@@ -92,4 +99,4 @@ class personFunctions {
   }
 }
 
-module.exports = new personFunctions();
+module.exports = personFunctions;

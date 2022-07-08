@@ -1,0 +1,114 @@
+
+#--------------------------------------
+# creating a person
+# post: @/person
+# paremeters: needs the person
+# code should be 201 for success, 401 if already exists
+#--------------------------------------
+paths:
+  /family:                
+    post:                
+      tags:               
+        - Family        
+      summary: creates a new person
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: register person
+        description: creates a person
+        required: false
+        schema:
+          $ref: '#/definitions/person' 
+      responses:
+        201:
+          description: Person Successfully Created.
+        401:
+          description: Person Already Exists.
+    patch:                
+      tags:               
+        - Person         
+      summary: edits a new person
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: edit person
+        description: edit person
+        required: false
+        schema:
+          $ref: '#/definitions/person' 
+      responses:
+        201:
+          description: Person Successfully Edited.
+    delete:                
+      tags:               
+        - Person         
+      summary: removes
+      produces:
+      - application/json
+      parameters:
+      responses:
+        201:
+          description: Person Successfully Removed.
+    get:                
+      tags:               
+        - Person         
+      summary: removes
+      produces:
+      - application/json
+      parameters:
+      responses:
+        201:
+          description: Person Successfully Removed.
+
+# definition for data input  
+definitions:      
+  person:
+    type: object
+    properties:
+      person_id:
+        type: number
+      name_first:
+        type: string
+        example: James
+      name_by:
+        type: string
+        example: I
+      name_middle:
+        type: string
+        example: Perez
+      name_maiden:
+        type: string
+        example: 
+      name_last:
+        type: string
+        example: of Barcelona
+      gender:
+        type: string
+        example: M
+      date_birth:
+        type: number
+        example: 02021208
+      date_death:
+        type: number
+        example: 27071276
+      place_birth:
+        type: string
+        example: Montpellier
+      place_death:
+        type: string
+        example: Alzira
+      cause_death:
+        type: string
+        example: 123123123
+      family_id:
+        type: number
+        example: 123123123
+      dynasty_id:
+        type: number
+        example: 123123123
+      titles:
+        type: array
+        example: {Kingdom of Aragon, County of Montpellier}
+      

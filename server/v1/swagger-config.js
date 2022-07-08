@@ -40,7 +40,7 @@ const swaggerOptions = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "IB Swagger Documentation",
+      title: "IBE Swagger Documentation",
       version: process.env.API_VERSION || "undefined",
       description: `### API Documentation
       \n\n**This API uses JWT tokens for authentication. Steps to auth:**
@@ -59,7 +59,7 @@ const swaggerOptions = {
 const specs = swaggerJsDoc(swaggerOptions);
 
 const uiOptions = {
-  customSiteTitle: "IB Swagger Documentation",
+  customSiteTitle: "IBE Swagger Documentation",
 };
 
 module.exports = { specs, uiOptions };

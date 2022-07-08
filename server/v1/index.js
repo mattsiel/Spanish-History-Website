@@ -27,11 +27,11 @@ app.get('/', (request, response) => {
   response.json({ info: `the vars are ${process.env.PGHOST}` });
 });
 
-app.get('/users', personRouteV1.getUsers);
-app.get('/users/:id', personRouteV1.getUserById);
-app.post('/users', personRouteV1.createUser);
-app.put('/users/:id', personRouteV1.updateUser);
-app.delete('/users/:id', personRouteV1.deleteUser);
+app.get('/person', personRouteV1.getPersons);
+app.get('/person/:id', personRouteV1.getPersonById);
+app.post('/person', personRouteV1.createPerson);
+app.put('/person/:id', personRouteV1.updatePerson);
+app.delete('/person/:id', personRouteV1.deletePerson);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
