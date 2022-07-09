@@ -16,8 +16,8 @@ const pool = new Pool({
 });
 
 class personFunctions {
-  getDynastys(request, response) {
-    pool.query('SELECT * FROM dynasty', (error, results) => {
+  getParents(request, response) {
+    pool.query('SELECT * FROM parent', (error, results) => {
       if (error) {
         throw error;
       }
@@ -25,10 +25,10 @@ class personFunctions {
     });
   }
 
-  getDynastyById(request, response) {
+  getParentById(request, response) {
     const id = parseInt(request.params.id, 10);
 
-    pool.query('SELECT * FROM dynasty WHERE dynasty_id = $1', [id], (error, results) => {
+    pool.query('SELECT * FROM parent WHERE parent_id = $1', [id], (error, results) => {
       if (error) {
         throw error;
       }
@@ -36,61 +36,57 @@ class personFunctions {
     });
   }
 
-  createDynasty(request, response) {
+  createParent(request, response) {
     const {
-      dynasty_name,
-      dynasty_head,
-      dynasty_creator_id,
-      dynasty_start
+        person_id,
+        parent_person_id,
+        parent_type
     } = request.body;
 
     pool.query(
-      'INSERT INTO dynasty VALUES ($1, $2, $3, $4)',
-      [ dynasty_name,
-        dynasty_head,
-        dynasty_creator_id,
-        dynasty_start],
+      'INSERT INTO parent VALUES ($1, $2, $3, $4)',
+      [ person_id,
+        parent_person_id,
+        parent_type],
       (error, results) => {
         if (error) {
           throw error;
         }
-        response.status(201).send(`Dynasty added with ID: ${results.insertId}`);
+        response.status(201).send(`Parent added with ID: ${results.insertId}`);
       },
     );
   }
 
-  updateDynasty(request, response) {
+  updateParent(request, response) {
     const id = parseInt(request.params.id, 10);
     const {
-      dynasty_name,
-      dynasty_head,
-      dynasty_creator_id,
-      dynasty_start
+        person_id,
+        parent_person_id,
+        parent_type
     } = request.body;
 
     pool.query(
-      'UPDATE dynasty SET dynasty_name = $2, dynasty_head = $3, dynasty_creator_id = $4, dynasty_start = $5 WHERE dynasty_id = $1',
-      [ dynasty_name,
-        dynasty_head,
-        dynasty_creator_id,
-        dynasty_start],
+      'UPDATE parent SET person_id = $2, parent_person_id = $3, parent_type = $4, WHERE parent_id = $1',
+      [ person_id,
+        parent_person_id,
+        parent_type],
       (error, results) => {
         if (error) {
           throw error;
         }
-        response.status(200).send(`Dynasty modified with ID: ${id}`);
+        response.status(200).send(`Parent modified with ID: ${id}`);
       },
     );
   }
 
-  deleteDynasty(request, response) {
+  deleteParent(request, response) {
     const id = parseInt(request.params.id, 10);
 
-    pool.query('DELETE FROM dynasty WHERE dynasty_id = $1', [id], (error, results) => {
+    pool.query('DELETE FROM parent WHERE parent_id = $1', [id], (error, results) => {
       if (error) {
         throw error;
       }
-      response.status(200).send(`Dynasty deleted with ID: ${id}`);
+      response.status(200).send(`Parent deleted with ID: ${id}`);
     });
   }
 }

@@ -47,5 +47,10 @@
         },
       };
     },
+    methods: {
+      submitted() {
+        this.isSubmitted = true;
+      }
+    },
   };
 </script>

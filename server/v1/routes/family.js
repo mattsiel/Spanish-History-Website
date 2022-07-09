@@ -16,7 +16,7 @@ const pool = new Pool({
 });
 
 class personFunctions {
-  getFamily(request, response) {
+  getFamilys(request, response) {
     pool.query('SELECT * FROM family', (error, results) => {
       if (error) {
         throw error;
@@ -46,13 +46,13 @@ class personFunctions {
     } = request.body;
 
     pool.query(
-      'INSERT INTO users VALUES ($1, $2, $3, $4, $5)',
-      [family_id, family_name, dynasty_id, family_head, family_creator_id],
+      'INSERT INTO family VALUES ($1, $2, $3, $4)',
+      [family_name, dynasty_id, family_head, family_creator_id],
       (error, results) => {
         if (error) {
           throw error;
         }
-        response.status(201).send(`User added with ID: ${results.insertId}`);
+        response.status(201).send(`Family added with ID: ${results.insertId}`);
       },
     );
   }
@@ -60,7 +60,6 @@ class personFunctions {
   updateFamily(request, response) {
     const id = parseInt(request.params.id, 10);
     const {
-      family_id,
       family_name,
       dynasty_id,
       family_head,
@@ -68,9 +67,8 @@ class personFunctions {
     } = request.body;
 
     pool.query(
-      'UPDATE users SET family_name = $2, dynasty_id = $3, family_head = $4, family_creator_id = $5 WHERE id = $1',
-      [family_id,
-        family_name,
+      'UPDATE family SET family_name = $2, dynasty_id = $3, family_head = $4, family_creator_id = $5 WHERE family_id = $1',
+      [ family_name,
         dynasty_id,
         family_head,
         family_creator_id],
@@ -78,7 +76,7 @@ class personFunctions {
         if (error) {
           throw error;
         }
-        response.status(200).send(`User modified with ID: ${id}`);
+        response.status(200).send(`Family modified with ID: ${id}`);
       },
     );
   }
@@ -90,7 +88,7 @@ class personFunctions {
       if (error) {
         throw error;
       }
-      response.status(200).send(`User deleted with ID: ${id}`);
+      response.status(200).send(`Family deleted with ID: ${id}`);
     });
   }
 }

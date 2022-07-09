@@ -69,7 +69,7 @@ class personFunctions {
     } = request.body;
 
     pool.query(
-      'UPDATE dynasty SET dynasty_name = $2, dynasty_head = $3, dynasty_creator_id = $4, dynasty_start = $5 WHERE dynasty_id = $1',
+      'UPDATE users SET dynasty_name = $2, dynasty_head = $3, dynasty_creator_id = $4, dynasty_start = $5 WHERE dynasty_id = $1',
       [ dynasty_name,
         dynasty_head,
         dynasty_creator_id,
