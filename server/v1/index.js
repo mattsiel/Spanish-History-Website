@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const swaggerUI = require("swagger-ui-express");
 const swaggerConf = require("./swagger-config");
-const port = 3100;
+const port = $API_PORT;
 
 // api routes
 const personRouteV1 = require("./routes/person.js");

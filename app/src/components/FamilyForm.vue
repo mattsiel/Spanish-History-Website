@@ -1,56 +1,56 @@
+<script>
+    import axios from "axios"
+
+    export default {
+        name : 'AddInformation',
+        data (){
+            return {
+                name : '',
+                age : '',
+            }
+        },
+        methods : {
+            onSubmit(e){
+                e.preventDefault()
+                if(!this.name){
+                    alert('Please Add a Name')
+                    return
+                }
+                const NewInformation = {
+                    id: Math.floor(Math.random() * 100000),
+                    name : this.name,
+                    age : this.age,
+                    reminder : this.reminder
+                }
+                this.$emit('add-information', newInformation)
+                this.name = ' ',
+                this.age = ' '
+
+                axios.get("http://localhost:3100/person");
+            }
+        }
+    }
+</script>
+
 <template>
-<div class="form-group">
-  <label for="familyName"> First Name </label>
-    <input type="text"
-        id="familyName"
-        class="form-control"
-        v-model="familyData.familyName">
-
-  <label for="dynastyId">Birth Date</label>
-    <input min="1"
-      max="99999999"
-      type="number"
-      id="dynastyId"
-      class="form-control"
-      v-model.number="familyData.dynastyId">
-
-    
-  <label for="familyHead"> Family Head</label>
-    <input min="1"
-      max="99999999"
-      type="number"
-      id="familyHead"
-      class="form-control"
-      v-model.number="familyData.familyHead">
-
-    
-  <label for="familyCreator"> Family Creator</label>
-    <input min="1"
-      max="99999999"
-      type="number"
-      id="familyCreator"
-      class="form-control"
-      v-model.number="familyData.familyCreator">
-
-</div>    
+  <form @submit="onSubmit" class="add-form">
+    <div class="form-control">
+      <label>Name</label>
+      <input type="text" v-model="name" name="name" placeholder="Enter Your Name" />
+    </div>
+    <div class="form-control">
+      <label>Age</label>
+      <input
+        type="text"
+        v-model="age"
+        name="age"
+        placeholder="Enter Your Age"
+      />
+    </div>
+    <input type="submit" value="Save Information" class="btn btn-block" />
+  </form>
 </template>
 
-<script>
-  export default {
-    data() {
-      return {
-        familyData: {
-        familyName:"",
-        dynastyId: "",
-        familyHead: "",
-        familyCreator: ""
-        },
-      };
-    },
-    methods: {
-      submitted() {
-        this.isSubmitted = true;
-      }
-    },
-  };
-</script>
+<style>
+
+</style>
