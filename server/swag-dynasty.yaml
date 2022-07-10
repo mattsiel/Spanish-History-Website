@@ -6,29 +6,29 @@
 # code should be 201 for success, 401 if already exists
 #--------------------------------------
 paths:
-  /family:                
+  /dynasty:                
     post:                
       tags:               
-        - Family        
+        - Dynasty
       summary: creates a new person
       produces:
       - application/json
       parameters:
       - in: body
-        name: register person
-        description: creates a person
+        name: register Dynasty
+        description: creates a Dynasty
         required: false
         schema:
-          $ref: '#/definitions/family' 
+          $ref: '#/definitions/dynasty' 
       responses:
         201:
-          description: Person Successfully Created.
+          description: Dynasty Successfully Created.
         401:
-          description: Person Already Exists.
+          description: Dynasty Already Exists.
     patch:                
       tags:               
-        - Family         
-      summary: edits a new person
+        - Dynasty         
+      summary: edits a new Dynasty
       produces:
       - application/json
       parameters:
@@ -37,49 +37,61 @@ paths:
         description: edit person
         required: false
         schema:
-          $ref: '#/definitions/family' 
+          $ref: '#/definitions/dynasty' 
       responses:
         201:
-          description: Person Successfully Edited.
-    delete:                
-      tags:               
-        - Family         
-      summary: removes
-      produces:
-      - application/json
-      parameters:
-      responses:
-        201:
-          description: Person Successfully Removed.
+          description: Dynasty Successfully Edited.
     get:                
       tags:               
-        - Family         
-      summary: removes
+        - Dynasty         
+      summary: removes Dynasty
       produces:
       - application/json
       parameters:
       responses:
         201:
-          description: Person Successfully Removed.
+          description: Dynasty Successfully Removed.
+
+  /dynasty:{id}:
+    delete:                
+      tags:               
+        - Dynasty         
+      summary: removes Dynasty by ID
+      produces:
+      - application/json
+      parameters:
+      responses:
+        201:
+          description: Dynasty Successfully Removed.
+    get:                
+      tags:               
+        - Dynasty         
+      summary: gets Dynasty by ID
+      produces:
+      - application/json
+      parameters:
+      responses:
+        201:
+          description: Dynasty Successfully Removed.
 
 # definition for data input  
 definitions:      
-  family:
+  dynasty:
     type: object
     properties:
-      family_id:
+      dynasty_id:
         type: number
         example: 7
-      family_name:
+      dynasty_name:
         type: string
         example: Bellonids
-      family_head:
+      dynasty_head:
         type: string
         example: I
-      family_creator_id:
+      dynasty_creator_id:
         type: number
         example: 1
-      family_start:
+      dynasty_start:
         type: number
         example: 07070989
      
