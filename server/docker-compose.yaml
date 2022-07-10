@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  #############################################################################################
+  ###                                     Express API                                       ###
+  #############################################################################################
+  ibe-api:
+    image: ibe-api
+    container_name: ibe-api
+    build:
+      context: .
+    ports:
+      - 3100:3100
+    networks:
+      - ibe-net
+    volumes:
+      - ./ibe-api:/src/
+      - ./nodemodules:/node_modules
+    command: ['npm', 'run', 'dev']
+
+networks:
+  ibe-net:
+    driver: 'bridge'

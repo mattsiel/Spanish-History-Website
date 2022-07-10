@@ -5,7 +5,6 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable class-methods-use-this */
 const { send } = require('process');
-
 require('dotenv').config();
 
 const { Pool } = require('pg');
@@ -15,7 +14,7 @@ const pool = new Pool({
   host:process.env.PGHOST,
   database:process.env.PGDATABASE,
   password:process.env.PGPASSWORD,
-  port:4000,
+  port:process.env.PGPORT,
 });
 
 class personFunctions {

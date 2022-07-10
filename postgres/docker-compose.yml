@@ -1,5 +1,4 @@
 version: "3.8"
-
 services:
   ibe-db:
     image: ibe-db
@@ -14,3 +13,6 @@ services:
     ports:
       - 4000:4000
     command: -p 4000 
+networks:
+  ibe-net:
+    driver: "bridge"

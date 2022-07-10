@@ -1,0 +1,40 @@
+version: "3.8"
+services:
+  #############################################################################################
+  ###                                     Express API                                       ###
+  #############################################################################################
+  ibe-db:
+    image: ibe-db
+    container_name: postgres-ibe
+    build:
+      context: ./postgres
+      target: ibe-db
+    networks:
+      - ibe-net
+    environment:
+      - POSTGRES_USER=${PGUSER}
+      - POSTGRES_PASSWORD=${PGPASSWORD}
+      - POSTGRES_DB=${PGDATABASE}
+    ports:
+      - 4000:4000
+    command: -p 4000 
+  
+  ibe-api:
+    image: ibe-api
+    container_name: ibe-api
+    build:
+      context: ./server
+    ports:
+      - 3100:3100
+    networks:
+      - ibe-net
+    depends_on:
+      - ibe-db
+    volumes:
+      - ./ibe-api:/src/
+      - ./nodemodules:/node_modules
+    command: ['npm', 'run', 'dev']
+
+networks:
+  ibe-net:
+    driver: 'bridge'

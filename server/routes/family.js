@@ -15,7 +15,7 @@ const pool = new Pool({
   port: process.env.PGPORT,
 });
 
-class personFunctions {
+class familyFunctions {
   getFamilys(request, response) {
     pool.query('SELECT * FROM family', (error, results) => {
       if (error) {
@@ -93,4 +93,4 @@ class personFunctions {
   }
 }
 
-module.exports = personFunctions;
+module.exports = new familyFunctions();

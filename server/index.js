@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const swaggerUI = require("swagger-ui-express");
 const swaggerConf = require("./swagger-config");
-const port = $API_PORT;
+const port = process.env.API_PORT;
 
 // api routes
 const personRouteV1 = require("./routes/person.js");
@@ -33,7 +33,6 @@ app.get('/person/:id', personRouteV1.getPersonById);
 app.post('/person', personRouteV1.createPerson);
 app.put('/person/:id', personRouteV1.updatePerson);
 app.delete('/person/:id', personRouteV1.deletePerson);
-
 app.get('/family', familyRouteV1.getFamilys);
 app.get('/family/:id', familyRouteV1.getFamilyById);
 app.post('/family', familyRouteV1.createFamily);
@@ -41,7 +40,7 @@ app.put('/family/:id', familyRouteV1.updateFamily);
 app.delete('/family/:id', familyRouteV1.deleteFamily);
 
 app.listen(port, () => {
-  console.log(`App running on port ${port}.`)
+  console.log(`App running on port ${port}. pg port access from ${process.env.PGPORT}`)
 });
 
 
