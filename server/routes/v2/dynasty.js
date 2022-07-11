@@ -1,13 +1,24 @@
 const getUserModel = (sequelize, { DataTypes }) => {
-  const User = sequelize.define('user', {
-    username: {
-      type: DataTypes.STRING,
+  const Dynasty = sequelize.define('dynasty', {
+    dynasty_id: {
+      type: DataTypes.SERIAL,
       unique: true,
       allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
+    dynasty_name: {
+      type: DataTypes.SERIAL,
+      unique: true,
+      allowNull: false,
+    },
+    dynasty_head: {
+
+    },
+    dynasty_creator_id: {
+
+    },
+    dynasty_start: {
+
+    }
   });
 
   User.associate = (models) => {

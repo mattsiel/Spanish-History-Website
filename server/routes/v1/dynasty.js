@@ -41,7 +41,7 @@ class personFunctions {
       dynasty_name,
       dynasty_head,
       dynasty_creator_id,
-      dynasty_start
+      dynasty_start,
     } = request.body;
 
     pool.query(
