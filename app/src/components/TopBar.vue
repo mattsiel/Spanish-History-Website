@@ -11,7 +11,7 @@
                 </TopBarItem>
             </RouterLink>
 
-            <RouterLink to="/maps" class="topbarbox" >
+            <RouterLink to="/map" class="topbarbox" >
                 <TopBarItem>
                     <template #heading>Maps</template>
                 </TopBarItem>
@@ -21,7 +21,7 @@
                     <template #heading>The Iberia Project</template>
             </TopBarItem>
 
-            <RouterLink to="/families" class="topbarbox" >
+            <RouterLink to="/family" class="topbarbox" >
                 <TopBarItem>
                     <template #heading>Families</template>
                 </TopBarItem>

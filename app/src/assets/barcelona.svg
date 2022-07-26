@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.1"
+   width="19"
+   height="19"
+   shape-rendering="crispEdges"
+   id="svg31951"
+   sodipodi:docname="barcelona.svg"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs31955" />
+  <sodipodi:namedview
+     id="namedview31953"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="4.4726634"
+     inkscape:cx="-32.642743"
+     inkscape:cy="12.296924"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg31951" />
+  <path
+     id="rect26955"
+     d="M 5,0 V 1 2 3 4 5 6 7 H 4 V 8 9 H 3 v 1 H 2 v 1 1 H 1 v 1 1 H 0 v 1 1 h 1 v 1 H 0 v 1 h 1 v 1 h 1 v -1 h 1 v -1 h 1 v -1 h 1 1 1 1 1 v -1 h 1 1 1 v -1 h 1 v -1 h 1 1 1 v -1 h 1 1 v -1 h 1 V 10 H 18 V 9 8 h 1 V 7 6 H 18 V 5 4 3 H 17 16 15 V 4 H 14 13 12 11 10 V 3 H 9 V 2 H 8 7 V 1 H 6 V 0 Z" />
+</svg>

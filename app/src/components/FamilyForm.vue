@@ -2,53 +2,57 @@
     import axios from "axios"
 
     export default {
-        name : 'AddInformation',
+        name : 'AddFamilyInfo',
         data (){
             return {
-                name : '',
-                age : '',
+                dynasty_name: '',
+                dynasty_head: '',
+                dynasty_creator_id: '',
+                dynasty_start: ''
             }
         },
-        methods : {
-            onSubmit(e){
-                e.preventDefault()
-                if(!this.name){
-                    alert('Please Add a Name')
-                    return
-                }
-                const NewInformation = {
-                    id: Math.floor(Math.random() * 100000),
-                    name : this.name,
-                    age : this.age,
-                    reminder : this.reminder
-                }
-                this.$emit('add-information', newInformation)
-                this.name = ' ',
-                this.age = ' '
-
-                axios.get("http://localhost:3100/person");
+        submit: function() {
+            if(!this.name){
+                alert('Please Add a Name')
+                return
             }
+            this.dynasty_name = ' ',
+            this.dynasty_head = ' '
+            this.dynasty_creator_id = ' ',
+            this.dynasty_start = ' '
+
+            axios.get("http://localhost:3100/person");
         }
     }
 </script>
 
 <template>
-  <form @submit="onSubmit" class="add-form">
-    <div class="form-control">
-      <label>Name</label>
-      <input type="text" v-model="name" name="name" placeholder="Enter Your Name" />
+    <div>
+      <div>
+        <h2>Dynasty Name</h2>
+        <input type="text" v-model="dynasty_name" />
+      </div>
+
+      <div>
+        <h2>Dynasty Head</h2>
+        <input type="number" v-model="dynasty_head" />
+      </div>
+
+      <div>
+        <h2>Dynasty Creator</h2>
+        <input type="number" v-model="dynasty_creator_id" />
+      </div>
+
+      <div>
+        <h2>Dynasty Start</h2>
+        <input type="date" v-model="dynasty_start" />
+      </div>
+
+      <div>
+        <h2>Submit</h2>
+        <input type="submit" value="Submit" v-on:click="submit" />
+      </div>
     </div>
-    <div class="form-control">
-      <label>Age</label>
-      <input
-        type="text"
-        v-model="age"
-        name="age"
-        placeholder="Enter Your Age"
-      />
-    </div>
-    <input type="submit" value="Save Information" class="btn btn-block" />
-  </form>
 </template>
 
 <style>

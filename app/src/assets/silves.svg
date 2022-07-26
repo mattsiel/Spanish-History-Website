@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.1"
+   width="6"
+   height="7"
+   shape-rendering="crispEdges"
+   id="svg31951"
+   sodipodi:docname="silves.svg"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs31955">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect1609"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1 @ F,1,0,1,0,0.25,0,1"
+       unit="px"
+       method="auto"
+       mode="F"
+       radius="25"
+       chamfer_steps="1"
+       flexible="true"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+  </defs>
+  <sodipodi:namedview
+     id="namedview31953"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="50.60241"
+     inkscape:cx="4.5254762"
+     inkscape:cy="1.245"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg31951" />
+  <path
+     id="rect30453"
+     d="m 2,0.25 v 0.5 1 1 A 0.25,0.25 135 0 1 1.75,3 H 1.25 A 0.25,0.25 135 0 0 1,3.25 v 0.5 1 A 0.25,0.25 135 0 1 0.75,5 H 0.25 A 0.25,0.25 135 0 0 0,5.25 v 0.5 A 0.25,0.25 45 0 0 0.25,6 h 0.5 1 1 A 0.25,0.25 45 0 1 3,6.25 v 0.5 A 0.25,0.25 45 0 0 3.25,7 h 0.5 1 A 0.25,0.25 135 0 0 5,6.75 v -0.5 -1 -1 -1 A 0.25,0.25 135 0 1 5.25,3 h 0.5 A 0.25,0.25 135 0 0 6,2.75 v -0.5 -1 A 0.25,0.25 45 0 0 5.75,1 h -0.5 -1 -1 A 0.25,0.25 45 0 1 3,0.75 V 0.25 A 0.25,0.25 45 0 0 2.75,0 H 2.25 A 0.25,0.25 135 0 0 2,0.25 Z"
+     style="fill:#000000"
+     inkscape:path-effect="#path-effect1609"
+     inkscape:original-d="M 2,0 V 1 2 3 H 1 V 4 5 H 0 V 6 H 1 2 3 V 7 H 4 5 V 6 5 4 3 H 6 V 2 1 H 5 4 3 V 0 Z" />
+</svg>
