@@ -6,7 +6,7 @@ const getUserModel = (sequelize, { DataTypes }) => {
       allowNull: false,
     },
     dynasty_name: {
-      type: DataTypes.SERIAL,
+      type: DataTypes,
       unique: true,
       allowNull: false,
     },

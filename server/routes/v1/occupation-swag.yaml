@@ -1,0 +1,98 @@
+
+#--------------------------------------
+# creating a person
+# post: @/person
+# paremeters: needs the person
+# code should be 201 for success, 401 if already exists
+#--------------------------------------
+paths:
+  /dynasty:                
+    post:                
+      tags:               
+        - Dynasty
+      summary: creates a new person
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: register Dynasty
+        description: creates a Dynasty
+        required: false
+        schema:
+          $ref: '#/definitions/dynasty' 
+      responses:
+        201:
+          description: Dynasty Successfully Created.
+        401:
+          description: Dynasty Already Exists.
+    patch:                
+      tags:               
+        - Dynasty         
+      summary: edits a new Dynasty
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: edit person
+        description: edit person
+        required: false
+        schema:
+          $ref: '#/definitions/dynasty' 
+      responses:
+        201:
+          description: Dynasty Successfully Edited.
+    get:                
+      tags:               
+        - Dynasty         
+      summary: removes Dynasty
+      produces:
+      - application/json
+      parameters:
+      responses:
+        201:
+          description: Dynasty Successfully Removed.
+
+  /dynasty:{id}:
+    delete:                
+      tags:               
+        - Dynasty         
+      summary: removes Dynasty by ID
+      produces:
+      - application/json
+      parameters:
+      responses:
+        201:
+          description: Dynasty Successfully Removed.
+    get:                
+      tags:               
+        - Dynasty         
+      summary: gets Dynasty by ID
+      produces:
+      - application/json
+      parameters:
+      responses:
+        201:
+          description: Dynasty Successfully Removed.
+
+# definition for data input  
+definitions:      
+  dynasty:
+    type: object
+    properties:
+      dynasty_id:
+        type: number
+        example: 7
+      dynasty_name:
+        type: string
+        example: Bellonids
+      dynasty_head:
+        type: string
+        example: I
+      dynasty_creator_id:
+        type: number
+        example: 1
+      dynasty_start:
+        type: number
+        example: 07070989
+     
+      
