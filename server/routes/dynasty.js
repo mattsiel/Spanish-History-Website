@@ -1,8 +1,4 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable no-unused-vars */
-/* eslint-disable camelcase */
-/* eslint-disable class-methods-use-this */
-/* eslint-disable linebreak-style */
+
 require('dotenv').config();
 
 const { Pool } = require('pg');
@@ -15,7 +11,7 @@ const pool = new Pool({
   port: process.env.PGPORT,
 });
 
-class personFunctions {
+class DynastyFunctions {
   getDynastys(request, response) {
     pool.query('SELECT * FROM dynasty', (error, results) => {
       if (error) {
@@ -41,12 +37,12 @@ class personFunctions {
       dynasty_name,
       dynasty_head,
       dynasty_creator_id,
-      dynasty_start
+      dynasty_start,
     } = request.body;
 
     pool.query(
       'INSERT INTO dynasty VALUES ($1, $2, $3, $4)',
-      [ dynasty_name,
+      [dynasty_name,
         dynasty_head,
         dynasty_creator_id,
         dynasty_start],
@@ -65,12 +61,12 @@ class personFunctions {
       dynasty_name,
       dynasty_head,
       dynasty_creator_id,
-      dynasty_start
+      dynasty_start,
     } = request.body;
 
     pool.query(
       'UPDATE dynasty SET dynasty_name = $2, dynasty_head = $3, dynasty_creator_id = $4, dynasty_start = $5 WHERE dynasty_id = $1',
-      [ dynasty_name,
+      [dynasty_name,
         dynasty_head,
         dynasty_creator_id,
         dynasty_start],
@@ -95,4 +91,4 @@ class personFunctions {
   }
 }
 
-module.exports = personFunctions;
+module.exports = DynastyFunctions;
