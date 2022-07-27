@@ -1,4 +1,8 @@
-
+/* eslint-disable linebreak-style */
+/* eslint-disable no-unused-vars */
+/* eslint-disable camelcase */
+/* eslint-disable class-methods-use-this */
+/* eslint-disable linebreak-style */
 require('dotenv').config();
 
 const { Pool } = require('pg');
@@ -91,4 +95,4 @@ class DynastyFunctions {
   }
 }
 
-module.exports = DynastyFunctions;
+module.exports = new DynastyFunctions();

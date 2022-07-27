@@ -38,7 +38,6 @@ class FamilyFunctions {
 
   createFamily(request, response) {
     const {
-      family_id,
       family_name,
       dynasty_id,
       family_head,
@@ -68,7 +67,7 @@ class FamilyFunctions {
 
     pool.query(
       'UPDATE family SET family_name = $2, dynasty_id = $3, family_head = $4, family_creator_id = $5 WHERE family_id = $1',
-      [ family_name,
+      [family_name,
         dynasty_id,
         family_head,
         family_creator_id],
