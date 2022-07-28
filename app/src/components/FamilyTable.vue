@@ -27,14 +27,14 @@ import axios from 'axios'
 export default {
     data () {
         return {
-            loans: ''
+            people: []
         }
     },
     created () {
         axios.get('http://localhost:3100/person')
         .then(
             response => {
-                this.loans = response.body
+                this.people = response.body
                 // console.log(response)
             })
         .catch(function(error){
