@@ -11,23 +11,24 @@
                 dynasty_start: ''
             }
         },
-        submit: function() {
-            if(!this.name){
-                alert('Please Add a Name')
-                return
-            }
-            this.dynasty_name = ' ',
-            this.dynasty_head = ' '
-            this.dynasty_creator_id = ' ',
-            this.dynasty_start = ' '
-
-            axios.get("http://localhost:3100/person");
-        }
+        methods:{
+          submitForm(){
+            axios.post('http://localhost:3100/dynasty', this.data)
+              .then((res) => {
+                  //Perform Success Action
+              })
+              .catch((error) => {
+                  // error.response.status Check status code
+              }).finally(() => {
+                  //Perform action in always
+              });
+          }
+        } 
     }
 </script>
 
 <template>
-    <div>
+    <form v-on:submit.prevent="submitForm">
       <div>
         <h2>Dynasty Name</h2>
         <input type="text" v-model="dynasty_name" />
@@ -50,9 +51,9 @@
 
       <div>
         <h2>Submit</h2>
-        <input type="submit" value="Submit" v-on:click="submit" />
+        <input type="submit" value="submit" v-on:click="submit" />
       </div>
-    </div>
+    </form>
 </template>
 
 <style>
