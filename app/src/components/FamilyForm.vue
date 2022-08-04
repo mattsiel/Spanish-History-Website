@@ -1,5 +1,6 @@
 <script>
     import axios from "axios"
+    import FormScroller from "./FormScroller.vue"
 
     export default {
         name : 'AddFamilyInfo',
@@ -31,30 +32,30 @@
 </script>
 
 <template>
-    <form v-on:submit.prevent="submitForm">
+    <form v-on:submit.prevent="submitForm" @keyup='nextItem'>
       <div>
         <h2>Dynasty Name</h2>
-        <input type="text" v-model="dynasty.dynasty_name" />
+        <input type="text" v-model="dynasty.dynasty_name" :key='item.id' :class='{"active-item": currentItem === item.id}'/>
       </div>
 
       <div>
         <h2>Dynasty Head</h2>
-        <input type="number" v-model.number="dynasty.dynasty_head" />
+        <input type="number" v-model.number="dynasty.dynasty_head"  :key='item.id' :class='{"active-item": currentItem === item.id}'/>
       </div>
 
       <div>
         <h2>Dynasty Creator</h2>
-        <input type="number" v-model.number="dynasty.dynasty_creator_id" />
+        <input type="number" v-model.number="dynasty.dynasty_creator_id" :key='item.id' :class='{"active-item": currentItem === item.id}'/>
       </div>
 
       <div>
         <h2>Dynasty Start</h2>
-        <input type="date" v-model="dynasty.dynasty_start" />
+        <input type="date" v-model="dynasty.dynasty_start" :key='item.id' :class='{"active-item": currentItem === item.id}'/>
       </div>
 
       <div>
         <h2>Submit</h2>
-        <input type="submit" value="submit" v-on:click="submit" />
+        <input type="submit" value="submit" v-on:click="submit" :key='item.id' :class='{"active-item": currentItem === item.id}'/>
       </div>
     </form>
 </template>

@@ -3,6 +3,8 @@
 /* eslint-disable camelcase */
 /* eslint-disable class-methods-use-this */
 /* eslint-disable linebreak-style */
+const Person = require('../models/Person.model.js')s;
+
 require('dotenv').config();
 
 const { Pool } = require('pg');
@@ -44,6 +46,16 @@ class DynastyFunctions {
       dynasty_start,
     } = request.body;
 
+    /*
+    Dynasty.create({
+      dynasty_name : request.body.dynasty_name,
+      dynasty_head : request.body.dynasty_head,
+      dynasty_creator_id : request.body.creator_id,
+      dynasty_start : request.body.dynasty_start, 
+    }).then((note) => {
+      res.status(200).json(note);
+    });
+    */
     if (!/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(request.body)) {
       // throw response.status(401).send('Special characters detected in fields');
     }
