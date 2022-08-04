@@ -31,8 +31,8 @@ services:
     depends_on:
       - ibe-db
     volumes:
-      - ./ibe-api:/src/
-      - ./nodemodules:/node_modules
+      - ./server/ibe-api:/src/
+      - ./server/node_modules:/node_modules
     command: ['npm', 'run', 'dev']
 
 networks:

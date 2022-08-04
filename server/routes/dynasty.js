@@ -49,7 +49,7 @@ class DynastyFunctions {
     }
 
     pool.query(
-      'INSERT INTO dynasty VALUES ($1, $2, $3, $4)',
+      'INSERT INTO dynasty(dynasty_name, dynasty_head, dynasty_creator_id, dynasty_start) VALUES ($1, $2, $3, $4)',
       [dynasty_name,
         dynasty_head,
         dynasty_creator_id,
