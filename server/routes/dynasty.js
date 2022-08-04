@@ -19,7 +19,7 @@ class DynastyFunctions {
   getDynastys(request, response) {
     pool.query('SELECT * FROM dynasty', (error, results) => {
       if (error) {
-        throw error;
+        throw response.status(400).send('Could not find dynasties');
       }
       response.status(200).json(results.rows);
     });
@@ -30,7 +30,7 @@ class DynastyFunctions {
 
     pool.query('SELECT * FROM dynasty WHERE dynasty_id = $1', [id], (error, results) => {
       if (error) {
-        throw error;
+        throw response.status(400).send('Could not find dynasties');
       }
       response.status(200).json(results.rows);
     });
@@ -52,7 +52,7 @@ class DynastyFunctions {
         dynasty_start],
       (error, results) => {
         if (error) {
-          throw error;
+          throw response.status(400).send('Could not find dynasties');
         }
         response.status(201).send(`Dynasty added with ID: ${results.insertId}`);
       },
@@ -76,7 +76,7 @@ class DynastyFunctions {
         dynasty_start],
       (error, results) => {
         if (error) {
-          throw error;
+          throw response.status(400).send('Could not find dynasties');
         }
         response.status(200).send(`Dynasty modified with ID: ${id}`);
       },
@@ -88,7 +88,7 @@ class DynastyFunctions {
 
     pool.query('DELETE FROM dynasty WHERE dynasty_id = $1', [id], (error, results) => {
       if (error) {
-        throw error;
+        throw response.status(400).send('Could not find dynasties');
       }
       response.status(200).send(`Dynasty deleted with ID: ${id}`);
     });
