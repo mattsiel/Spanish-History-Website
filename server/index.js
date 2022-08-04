@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
 const swaggerUI = require('swagger-ui-express');
@@ -13,6 +14,12 @@ const port = process.env.API_PORT;
 const dynastyRoute = require('./routes/dynasty');
 const personRoute = require('./routes/person');
 const familyRoute = require('./routes/family');
+
+const corsOptions = {
+  origin: 'http://localhost:3002',
+};
+
+app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 app.use(

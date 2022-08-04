@@ -3,17 +3,20 @@
 
     export default {
         name : 'AddFamilyInfo',
-        data (){
+        data () {
             return {
-                dynasty_name: '',
-                dynasty_head: '',
-                dynasty_creator_id: '',
-                dynasty_start: ''
+              dynasty: {
+                dynasty_name: "mattsi",
+                dynasty_head: null,
+                dynasty_creator_id: null,
+                dynasty_start: null
+              }
             }
         },
         methods:{
           submitForm(){
-            axios.post('http://localhost:3100/dynasty', this.data)
+            console.log(this.dynasty);
+            axios.post('http://localhost:3100/dynasty', this.dynasty)
               .then((res) => {
                   //Perform Success Action
               })
@@ -31,22 +34,22 @@
     <form v-on:submit.prevent="submitForm">
       <div>
         <h2>Dynasty Name</h2>
-        <input type="text" v-model="dynasty_name" />
+        <input type="text" v-model="dynasty.dynasty_name" />
       </div>
 
       <div>
         <h2>Dynasty Head</h2>
-        <input type="number" v-model="dynasty_head" />
+        <input type="number" v-model.number="dynasty.dynasty_head" />
       </div>
 
       <div>
         <h2>Dynasty Creator</h2>
-        <input type="number" v-model="dynasty_creator_id" />
+        <input type="number" v-model.number="dynasty.dynasty_creator_id" />
       </div>
 
       <div>
         <h2>Dynasty Start</h2>
-        <input type="date" v-model="dynasty_start" />
+        <input type="date" v-model="dynasty.dynasty_start" />
       </div>
 
       <div>
