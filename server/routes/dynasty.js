@@ -44,6 +44,10 @@ class DynastyFunctions {
       dynasty_start,
     } = request.body;
 
+    if (!/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(request.body)) {
+      return response.status(401).send('Special characters detected in fields');
+    }
+
     pool.query(
       'INSERT INTO dynasty VALUES ($1, $2, $3, $4)',
       [dynasty_name,
@@ -52,11 +56,13 @@ class DynastyFunctions {
         dynasty_start],
       (error, results) => {
         if (error) {
-          throw response.status(400).send('Could not find dynasties');
+          throw response.status(404).send('Could not find dynasties');
         }
         response.status(201).send(`Dynasty added with ID: ${results.insertId}`);
       },
     );
+
+    return response.status(400).send('Unknown Error');
   }
 
   updateDynasty(request, response) {
@@ -68,6 +74,9 @@ class DynastyFunctions {
       dynasty_start,
     } = request.body;
 
+    if (!/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(request.body)) {
+      throw response.status(401).send('Special characters detected in fields');
+    }
     pool.query(
       'UPDATE dynasty SET dynasty_name = $2, dynasty_head = $3, dynasty_creator_id = $4, dynasty_start = $5 WHERE dynasty_id = $1',
       [dynasty_name,
@@ -76,7 +85,7 @@ class DynastyFunctions {
         dynasty_start],
       (error, results) => {
         if (error) {
-          throw response.status(400).send('Could not find dynasties');
+          throw response.status(404).send('Could not find dynasties');
         }
         response.status(200).send(`Dynasty modified with ID: ${id}`);
       },
