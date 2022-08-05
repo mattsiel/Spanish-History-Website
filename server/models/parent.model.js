@@ -1,6 +1,17 @@
-const getFamilyModel = (sequelize, { DataTypes }) => {
-    const Family = sequelize.define('family', {
-      family_name: {
+
+CREATE TABLE "parent" (
+	"parent_id" serial NOT NULL,
+	"person_id" integer NOT NULL,
+	"parent_person_id" integer NOT NULL,
+	"parent_type" varchar NOT NULL,
+	CONSTRAINT "parent_pk" PRIMARY KEY ("parent_id")
+) WITH (
+  OIDS=FALSE
+);
+
+const getParentModel = (sequelize, { DataTypes }) => {
+    const Parent = sequelize.define('parent', {
+      parent_name: {
         type: DataTypes.STRING(100),
         allowNull: false,
         validate: {
@@ -9,28 +20,21 @@ const getFamilyModel = (sequelize, { DataTypes }) => {
           isAlpha: true, 
         },
       },
-      family_head: {
+      parent_head: {
         type: DataTypes.INTEGER,
         allowNull: true,
         validate: {
           isInt: true,
         },
       },
-      dynasty_id: {
+      parent_creator_id: {
         type: DataTypes.INTEGER,
         allowNull: true,
         validate: {
           isInt: true,
         },
       },
-      family_creator_id: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-        validate: {
-          isInt: true,
-        },
-      },
-      family_start: {
+      parent_start: {
         type: DataTypes.DATEONLY,
         allowNull: true,
         validate: {
@@ -39,8 +43,8 @@ const getFamilyModel = (sequelize, { DataTypes }) => {
       },
   
     });
-    return Family;
+    return Parent;
   };
   
-  export default getFamilyModel;
+  export default getParentModel;
   

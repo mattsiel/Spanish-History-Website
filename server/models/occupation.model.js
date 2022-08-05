@@ -1,6 +1,20 @@
-const getFamilyModel = (sequelize, { DataTypes }) => {
-    const Family = sequelize.define('family', {
-      family_name: {
+
+
+CREATE TABLE "occupation" (
+	"occupation_id" serial NOT NULL UNIQUE,
+	"occupation_type" varchar NOT NULL,
+	"occupation_start" DATE,
+	"occupation_end" DATE,
+	"person_id" integer NOT NULL,
+	CONSTRAINT "occupation_pk" PRIMARY KEY ("occupation_id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+const getOccupationModel = (sequelize, { DataTypes }) => {
+    const Occupation = sequelize.define('occupation', {
+      occupation_name: {
         type: DataTypes.STRING(100),
         allowNull: false,
         validate: {
@@ -9,28 +23,21 @@ const getFamilyModel = (sequelize, { DataTypes }) => {
           isAlpha: true, 
         },
       },
-      family_head: {
+      occupation_head: {
         type: DataTypes.INTEGER,
         allowNull: true,
         validate: {
           isInt: true,
         },
       },
-      dynasty_id: {
+      occupation_creator_id: {
         type: DataTypes.INTEGER,
         allowNull: true,
         validate: {
           isInt: true,
         },
       },
-      family_creator_id: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-        validate: {
-          isInt: true,
-        },
-      },
-      family_start: {
+      occupation_start: {
         type: DataTypes.DATEONLY,
         allowNull: true,
         validate: {
@@ -39,8 +46,8 @@ const getFamilyModel = (sequelize, { DataTypes }) => {
       },
   
     });
-    return Family;
+    return Occupation;
   };
   
-  export default getFamilyModel;
+  export default getOccupationModel;
   

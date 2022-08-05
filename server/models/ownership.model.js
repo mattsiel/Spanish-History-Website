@@ -1,6 +1,20 @@
-const getFamilyModel = (sequelize, { DataTypes }) => {
-    const Family = sequelize.define('family', {
-      family_name: {
+
+CREATE TABLE "ownership" (
+	"ownership_id" serial NOT NULL,
+	"property_id" integer NOT NULL,
+	"person_id" integer NOT NULL,
+	"ownership_start" DATE,
+	"ownership_end" DATE,
+	"ownership_source" TEXT,
+	CONSTRAINT "ownership_pk" PRIMARY KEY ("ownership_id")
+) WITH (
+  OIDS=FALSE
+);
+
+
+const getOwnershipModel = (sequelize, { DataTypes }) => {
+    const Ownership = sequelize.define('ownership', {
+      ownership_name: {
         type: DataTypes.STRING(100),
         allowNull: false,
         validate: {
@@ -9,28 +23,21 @@ const getFamilyModel = (sequelize, { DataTypes }) => {
           isAlpha: true, 
         },
       },
-      family_head: {
+      ownership_head: {
         type: DataTypes.INTEGER,
         allowNull: true,
         validate: {
           isInt: true,
         },
       },
-      dynasty_id: {
+      ownership_creator_id: {
         type: DataTypes.INTEGER,
         allowNull: true,
         validate: {
           isInt: true,
         },
       },
-      family_creator_id: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-        validate: {
-          isInt: true,
-        },
-      },
-      family_start: {
+      ownership_start: {
         type: DataTypes.DATEONLY,
         allowNull: true,
         validate: {
@@ -39,8 +46,8 @@ const getFamilyModel = (sequelize, { DataTypes }) => {
       },
   
     });
-    return Family;
+    return Ownership;
   };
   
-  export default getFamilyModel;
+  export default getOwnershipModel;
   

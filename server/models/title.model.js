@@ -1,6 +1,7 @@
-const getFamilyModel = (sequelize, { DataTypes }) => {
-    const Family = sequelize.define('family', {
-      family_name: {
+
+const getTitleModel = (sequelize, { DataTypes }) => {
+    const Title = sequelize.define('title', {
+      title_name: {
         type: DataTypes.STRING(100),
         allowNull: false,
         validate: {
@@ -9,28 +10,21 @@ const getFamilyModel = (sequelize, { DataTypes }) => {
           isAlpha: true, 
         },
       },
-      family_head: {
+      title_head: {
         type: DataTypes.INTEGER,
         allowNull: true,
         validate: {
           isInt: true,
         },
       },
-      dynasty_id: {
+      title_creator_id: {
         type: DataTypes.INTEGER,
         allowNull: true,
         validate: {
           isInt: true,
         },
       },
-      family_creator_id: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-        validate: {
-          isInt: true,
-        },
-      },
-      family_start: {
+      title_start: {
         type: DataTypes.DATEONLY,
         allowNull: true,
         validate: {
@@ -39,8 +33,8 @@ const getFamilyModel = (sequelize, { DataTypes }) => {
       },
   
     });
-    return Family;
+    return Title;
   };
   
-  export default getFamilyModel;
+  export default getTitleModel;
   
