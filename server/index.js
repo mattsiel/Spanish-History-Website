@@ -1,26 +1,28 @@
-require('dotenv').config();
+/* eslint-disable import/extensions */
+import express from 'express';
+import 'dotenv/config';
+import cors from 'cors';
+import bodyParser from 'body-parser';
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+// swagger init
+import swaggerUI from 'swagger-ui-express';
+import swaggerConf from './swagger-config.js';
+
+// routes
+import DynastyRoute from './routes/dynasty.js';
+
+// inits
+import initDynasty from './init/initialDynasty.js';
 
 const app = express();
-const swaggerUI = require('swagger-ui-express');
-const swaggerConf = require('./swagger-config');
 
 const port = process.env.API_PORT;
-
-// api routes
-const dynastyRoute = require('./routes/dynasty');
-const personRoute = require('./routes/person');
-const familyRoute = require('./routes/family');
 
 const corsOptions = {
   origin: 'http://localhost:3002',
 };
 
 app.use(cors(corsOptions));
-
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
@@ -38,24 +40,13 @@ app.get('/', (request, response) => {
   response.json({ info: `the vars are ${process.env.PGHOST}` });
 });
 
-app.get('/person', personRoute.getPersons);
-app.get('/person/:id', personRoute.getPersonById);
-app.post('/person', personRoute.createPerson);
-app.patch('/person/:id', personRoute.updatePerson);
-app.delete('/person/:id', personRoute.deletePerson);
-app.get('/family', familyRoute.getFamilys);
-app.get('/family/:id', familyRoute.getFamilyById);
-app.post('/family', familyRoute.createFamily);
-app.patch('/family/:id', familyRoute.updateFamily);
-app.delete('/family/:id', familyRoute.deleteFamily);
-app.get('/dynasty', dynastyRoute.getDynastys);
-app.get('/dynasty/:id', dynastyRoute.getDynastyById);
-app.post('/dynasty', dynastyRoute.createDynasty);
-app.patch('/dynasty/:id', dynastyRoute.updateDynasty);
-app.delete('/dynasty/:id', dynastyRoute.deleteDynasty);
+// app.use('/person', PersonRoute);
+// app.use('/family', FamilyRoute);
+app.use('/dynasty', DynastyRoute);
+initDynasty();
 
 app.listen(port, () => {
   console.log(`App running on port ${port}. pg port access from ${process.env.PGPORT}`);
 });
 
-module.exports = app;
+export default app;

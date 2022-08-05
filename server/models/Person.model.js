@@ -1,13 +1,12 @@
+
 const getPersonModel = (sequelize, { DataTypes }) => {
   const Person = sequelize.define('person', {
-    personname: {
+    person_name: {
       type: DataTypes.STRING,
       unique: true,
       allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
+
   });
 
   Person.associate = (models) => {
