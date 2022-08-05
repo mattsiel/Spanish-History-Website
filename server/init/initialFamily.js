@@ -40,6 +40,7 @@ const createFamily = () => {
       family_creator_id: null,
       family_start: '0912-01-01',
     },
+    { validate: false },
   ]);
 };
 

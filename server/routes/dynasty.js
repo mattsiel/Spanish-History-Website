@@ -34,20 +34,26 @@ router.get('/forID', (req, res) => {
   Dynasty.findAll({
     where: {
       dynasty_name: req.query.dynasty_name,
-    }
+    },
   }).then((dynasty) => res.send(dynasty.id));
 });
 
 router.post('/', async (req, res) => {
-  Dynasty.create({
-    dynasty_name: req.body.dynasty_name,
-    dynasty_head: req.body.dynasty_head,
-    dynasty_creator_id: req.body.dynasty_creator_id,
-    dynasty_start: req.body.dynasty_start,
-  }).then((dynasty) => {
+  Dynasty.create(
+    {
+      dynasty_name: req.body.dynasty_name,
+      dynasty_head: req.body.dynasty_head,
+      dynasty_creator_id: req.body.dynasty_creator_id,
+      dynasty_start: req.body.dynasty_start,
+    },
+    { validate: true },
+  ).then((dynasty) => {
     res.json(dynasty);
+  }).catch((err) => {
+    if (err.name === 'SequelizeValidationError') {
+      res.status(401).send('The Data Types of the Data did not match the database');
+    }
   });
-  return res;
 });
 
 router.patch('/:id', (req, res) => {
