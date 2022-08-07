@@ -30,7 +30,7 @@ services:
       - ibe-net
     depends_on:
       - ibe-db
-    command: ['npm', 'run', 'dev']
+    command: ['node', 'index.js']
 
 networks:
   ibe-net:

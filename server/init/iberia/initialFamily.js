@@ -2,8 +2,8 @@
 /* eslint-disable import/extensions */
 import Sequelize from 'sequelize';
 
-import sequelize from '../middleware/sequelize.js';
-import FamilyModel from '../models/Family.model.js';
+import sequelize from '../../middleware/sequelize.js';
+import FamilyModel from '../../models/Family.model.js';
 
 const Family = FamilyModel(sequelize, Sequelize);
 const eraseDatabaseOnSync = true;

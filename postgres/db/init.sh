@@ -1,2 +1,2 @@
 
-psql -U $POSTGRES_USER -d $POSTGRES_DB -a -f /app/db/startup.sql
+psql -U $PGUSER -d $PGDATABASE -a -f /app/db/startup.sql
