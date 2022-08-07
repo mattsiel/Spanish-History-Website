@@ -34,7 +34,8 @@ services:
     networks:
       - ibe-net
     depends_on:
-      - ibe-db
+      ibe-db:
+        condition: service_healthy
     command: ['node', 'index.js']
 
 networks:
