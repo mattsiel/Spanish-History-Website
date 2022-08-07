@@ -1,14 +1,16 @@
 import Sequelize from 'sequelize';
 
-
+console.log(process.env.PGDATABASE);
+console.log(process.env.PGUSER);
+console.log(process.env.PGPASSWORD);
 const sequelize = new Sequelize(
-  "iber-db",
-  "mattsii",
-  "theonemat",
+  process.env.PGDATABASE,
+  process.env.PGUSER,
+  process.env.PGPASSWORD,
   {
-    host: 'localhost',
+    host: '127.0.0.1',
     dialect: 'postgres',
-    port: 4000,
+    port: process.env.PGPORT,
   },
 );
 
