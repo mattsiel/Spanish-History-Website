@@ -3,7 +3,7 @@
 import Sequelize from 'sequelize';
 
 import sequelize from '../../middleware/sequelize.js';
-import FamilyModel from '../../models/Family.model.js';
+import FamilyModel from '../../models/family.model.js';
 
 const Family = FamilyModel(sequelize, Sequelize);
 const eraseDatabaseOnSync = true;
