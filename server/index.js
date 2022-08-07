@@ -10,6 +10,8 @@ import swaggerConf from './swagger-config.js';
 
 // routes
 import DynastyRoute from './routes/dynasty.js';
+import PersonRoute from './routes/person.js';
+import FamilyRoute from './routes/family.js';
 
 // inits
 import initDynasty from './init/initialDynasty.js';
@@ -40,8 +42,8 @@ app.get('/', (request, response) => {
   response.json({ info: `the vars are ${process.env.PGHOST}` });
 });
 
-// app.use('/person', PersonRoute);
-// app.use('/family', FamilyRoute);
+app.use('/person', PersonRoute);
+app.use('/family', FamilyRoute);
 app.use('/dynasty', DynastyRoute);
 initDynasty();
 

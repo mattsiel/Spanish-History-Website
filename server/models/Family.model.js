@@ -37,7 +37,13 @@ const getFamilyModel = (sequelize, { DataTypes }) => {
           isDate: true,
         },
       },
-  
+      cadet_of: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        validate: {
+          isInt: true,
+        },
+      },
     });
     return Family;
   };

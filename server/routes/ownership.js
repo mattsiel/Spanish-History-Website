@@ -1,102 +1,82 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable no-unused-vars */
-/* eslint-disable camelcase */
-/* eslint-disable class-methods-use-this */
-/* eslint-disable linebreak-style */
-require('dotenv').config();
+/* eslint-disable import/extensions */
+import { Router } from 'express';
+import Sequelize from 'sequelize';
+import OwnershipModel from '../models/ownership.model.js';
+import sequelize from '../middleware/sequelize.js';
 
-const { Pool } = require('pg');
+const Ownership = OwnershipModel(sequelize, Sequelize);
 
-const pool = new Pool({
-  user: process.env.PGUSER,
-  host: process.env.PGHOST,
-  database: process.env.PGDATABASE,
-  password: process.env.PGPASSWORD,
-  port: process.env.PGPORT,
+const router = Router();
+
+router.get('/', (req, res) => {
+  Ownership.findAll().then((ownership) => res.json(ownership));
+  return res.status(200);
 });
 
-class personFunctions {
-  getOwnerships(request, response) {
-    pool.query('SELECT * FROM ownership', (error, results) => {
-      if (error) {
-        throw error;
-      }
-      response.status(200).json(results.rows);
-    });
-  }
+router.get('/:id', (req, res) => {
+  Ownership.findAll({ where: { id: req.params.id } }).then((ownerships) => res.json(ownerships));
+  return res.status(200);
+});
 
-  getOwnershipById(request, response) {
-    const id = parseInt(request.params.id, 10);
+const { Op } = Sequelize;
 
-    pool.query('SELECT * FROM ownership WHERE ownership_id = $1', [id], (error, results) => {
-      if (error) {
-        throw error;
-      }
-      response.status(200).json(results.rows);
-    });
-  }
-
-  createOwnership(request, response) {
-    const {
-        property_id,
-        person_id,
-        ownership_start,
-        ownership_end,
-        ownership_source
-    } = request.body;
-
-    pool.query(
-      'INSERT INTO ownership VALUES ($1, $2, $3, $4, $5)',
-      [ property_id,
-        person_id,
-        ownership_start,
-        ownership_end,
-        ownership_source],
-      (error, results) => {
-        if (error) {
-          throw error;
-        }
-        response.status(201).send(`Ownership added with ID: ${results.insertId}`);
+router.get('/search', (req, res) => {
+  Ownership.findAll({
+    where: {
+      ownership_name: {
+        [Op.or]: [].concat(req.query.ownership_name),
       },
-    );
-  }
+    },
+  }).then((ownership) => res.json(ownership));
+});
 
-  updateOwnership(request, response) {
-    const id = parseInt(request.params.id, 10);
-    const {
-        property_id,
-        person_id,
-        ownership_start,
-        ownership_end,
-        ownership_source
-    } = request.body;
+router.get('/forID', (req, res) => {
+  Ownership.findAll({
+    where: {
+      ownership_name: req.query.ownership_name,
+    },
+  }).then((ownership) => res.send(ownership.id));
+});
 
-    pool.query(
-      'UPDATE ownership SET property_id = $2, person_id = $3, ownership_start = $4, ownership_end = $5 ownership_source = $6 WHERE ownership_id = $1',
-      [ property_id,
-        person_id,
-        ownership_start,
-        ownership_end,
-        ownership_source],
-      (error, results) => {
-        if (error) {
-          throw error;
-        }
-        response.status(200).send(`Ownership modified with ID: ${id}`);
-      },
-    );
-  }
+router.post('/', async (req, res) => {
+  Ownership.create(
+    {
+      property_id : req.body.property_id,
+      person_id : req.body.person_id,
+      ownership_start : req.body.ownership_start,
+      ownership_end : req.body.ownership_end,
+      ownership_source : req.body.ownership_source,
+    },
+    { validate: true },
+  ).then((ownership) => {
+    res.json(ownership);
+  }).catch((err) => {
+    if (err.name === 'SequelizeValidationError') {
+      res.status(401).send('The Data Types of the Data did not match the database');
+    }
+  });
+});
 
-  deleteOwnership(request, response) {
-    const id = parseInt(request.params.id, 10);
-
-    pool.query('DELETE FROM ownership WHERE ownership_id = $1', [id], (error, results) => {
-      if (error) {
-        throw error;
-      }
-      response.status(200).send(`Ownership deleted with ID: ${id}`);
+router.patch('/:id', (req, res) => {
+  Ownership.findByPk(req.params.id).then((ownership) => {
+    ownership.update({
+      property_id : req.body.property_id,
+      person_id : req.body.person_id,
+      ownership_start : req.body.ownership_start,
+      ownership_end : req.body.ownership_end,
+      ownership_source : req.body.ownership_source,
+    }).then((upOwnership) => {
+      res.json(upOwnership);
     });
-  }
-}
+  });
+});
 
-module.exports = personFunctions;
+router.delete('/:id', (req, res) => {
+  Ownership.findByPk(req.params.id).then((ownership) => {
+    ownership.destroy();
+  }).then(() => {
+    res.sendStatus(200);
+  });
+});
+
+export default router;

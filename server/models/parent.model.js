@@ -1,44 +1,27 @@
 
-CREATE TABLE "parent" (
-	"parent_id" serial NOT NULL,
-	"person_id" integer NOT NULL,
-	"parent_person_id" integer NOT NULL,
-	"parent_type" varchar NOT NULL,
-	CONSTRAINT "parent_pk" PRIMARY KEY ("parent_id")
-) WITH (
-  OIDS=FALSE
-);
+C
 
 const getParentModel = (sequelize, { DataTypes }) => {
     const Parent = sequelize.define('parent', {
-      parent_name: {
-        type: DataTypes.STRING(100),
+      person_id: {
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
-          notEmpty: true,
-          notNull: true,
-          isAlpha: true, 
+          isInt: true,
         },
       },
-      parent_head: {
+      parent_person_id: {
         type: DataTypes.INTEGER,
-        allowNull: true,
+        allowNull: false,
         validate: {
           isInt: true,
         },
       },
-      parent_creator_id: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
+      parent_type: {
+        type: DataTypes.STRING,
+        allowNull: false,
         validate: {
-          isInt: true,
-        },
-      },
-      parent_start: {
-        type: DataTypes.DATEONLY,
-        allowNull: true,
-        validate: {
-          isDate: true,
+          isAlpha: true,
         },
       },
   

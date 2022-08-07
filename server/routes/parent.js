@@ -1,94 +1,78 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable no-unused-vars */
-/* eslint-disable camelcase */
-/* eslint-disable class-methods-use-this */
-/* eslint-disable linebreak-style */
-require('dotenv').config();
+/* eslint-disable import/extensions */
+import { Router } from 'express';
+import Sequelize from 'sequelize';
+import ParentModel from '../models/parent.model.js';
+import sequelize from '../middleware/sequelize.js';
 
-const { Pool } = require('pg');
+const Parent = ParentModel(sequelize, Sequelize);
 
-const pool = new Pool({
-  user: process.env.PGUSER,
-  host: process.env.PGHOST,
-  database: process.env.PGDATABASE,
-  password: process.env.PGPASSWORD,
-  port: process.env.PGPORT,
+const router = Router();
+
+router.get('/', (req, res) => {
+  Parent.findAll().then((parent) => res.json(parent));
+  return res.status(200);
 });
 
-class personFunctions {
-  getParents(request, response) {
-    pool.query('SELECT * FROM parent', (error, results) => {
-      if (error) {
-        throw error;
-      }
-      response.status(200).json(results.rows);
-    });
-  }
+router.get('/:id', (req, res) => {
+  Parent.findAll({ where: { id: req.params.id } }).then((parents) => res.json(parents));
+  return res.status(200);
+});
 
-  getParentById(request, response) {
-    const id = parseInt(request.params.id, 10);
+const { Op } = Sequelize;
 
-    pool.query('SELECT * FROM parent WHERE parent_id = $1', [id], (error, results) => {
-      if (error) {
-        throw error;
-      }
-      response.status(200).json(results.rows);
-    });
-  }
-
-  createParent(request, response) {
-    const {
-        person_id,
-        parent_person_id,
-        parent_type
-    } = request.body;
-
-    pool.query(
-      'INSERT INTO parent VALUES ($1, $2, $3, $4)',
-      [ person_id,
-        parent_person_id,
-        parent_type],
-      (error, results) => {
-        if (error) {
-          throw error;
-        }
-        response.status(201).send(`Parent added with ID: ${results.insertId}`);
+router.get('/search', (req, res) => {
+  Parent.findAll({
+    where: {
+      parent_name: {
+        [Op.or]: [].concat(req.query.parent_name),
       },
-    );
-  }
+    },
+  }).then((parent) => res.json(parent));
+});
 
-  updateParent(request, response) {
-    const id = parseInt(request.params.id, 10);
-    const {
-        person_id,
-        parent_person_id,
-        parent_type
-    } = request.body;
+router.get('/forID', (req, res) => {
+  Parent.findAll({
+    where: {
+      parent_name: req.query.parent_name,
+    },
+  }).then((parent) => res.send(parent.id));
+});
 
-    pool.query(
-      'UPDATE parent SET person_id = $2, parent_person_id = $3, parent_type = $4, WHERE parent_id = $1',
-      [ person_id,
-        parent_person_id,
-        parent_type],
-      (error, results) => {
-        if (error) {
-          throw error;
-        }
-        response.status(200).send(`Parent modified with ID: ${id}`);
-      },
-    );
-  }
+router.post('/', async (req, res) => {
+  Parent.create(
+    {
+      person_id : req.body.person_id,
+      parent_person_id : req.body.parent_person_id,
+      parent_type : req.body.parent_type,
+    },
+    { validate: true },
+  ).then((parent) => {
+    res.json(parent);
+  }).catch((err) => {
+    if (err.name === 'SequelizeValidationError') {
+      res.status(401).send('The Data Types of the Data did not match the database');
+    }
+  });
+});
 
-  deleteParent(request, response) {
-    const id = parseInt(request.params.id, 10);
-
-    pool.query('DELETE FROM parent WHERE parent_id = $1', [id], (error, results) => {
-      if (error) {
-        throw error;
-      }
-      response.status(200).send(`Parent deleted with ID: ${id}`);
+router.patch('/:id', (req, res) => {
+  Parent.findByPk(req.params.id).then((parent) => {
+    parent.update({
+      person_id : req.body.person_id,
+      parent_person_id : req.body.parent_person_id,
+      parent_type : req.body.parent_type,
+    }).then((upParent) => {
+      res.json(upParent);
     });
-  }
-}
+  });
+});
 
-module.exports = personFunctions;
+router.delete('/:id', (req, res) => {
+  Parent.findByPk(req.params.id).then((parent) => {
+    parent.destroy();
+  }).then(() => {
+    res.sendStatus(200);
+  });
+});
+
+export default router;

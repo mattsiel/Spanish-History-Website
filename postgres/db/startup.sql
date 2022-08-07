@@ -28,6 +28,7 @@ CREATE TABLE "family" (
 	"family_head" integer,
 	"family_creator_id" integer,
 	"family_start" DATE,
+	"cadet_of" integer,
 	CONSTRAINT "family_pk" PRIMARY KEY ("family_id")
 ) WITH (
   OIDS=FALSE

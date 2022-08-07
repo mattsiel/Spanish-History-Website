@@ -1,98 +1,82 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable no-unused-vars */
-/* eslint-disable camelcase */
-/* eslint-disable class-methods-use-this */
-/* eslint-disable linebreak-style */
-require('dotenv').config();
+/* eslint-disable import/extensions */
+import { Router } from 'express';
+import Sequelize from 'sequelize';
+import PropertyModel from '../models/property.model.js';
+import sequelize from '../middleware/sequelize.js';
 
-const { Pool } = require('pg');
+const Property = PropertyModel(sequelize, Sequelize);
 
-const pool = new Pool({
-  user: process.env.PGUSER,
-  host: process.env.PGHOST,
-  database: process.env.PGDATABASE,
-  password: process.env.PGPASSWORD,
-  port: process.env.PGPORT,
+const router = Router();
+
+router.get('/', (req, res) => {
+  Property.findAll().then((property) => res.json(property));
+  return res.status(200);
 });
 
-class personFunctions {
-  getPropertys(request, response) {
-    pool.query('SELECT * FROM dynasty', (error, results) => {
-      if (error) {
-        throw error;
-      }
-      response.status(200).json(results.rows);
-    });
-  }
+router.get('/:id', (req, res) => {
+  Property.findAll({ where: { id: req.params.id } }).then((propertys) => res.json(propertys));
+  return res.status(200);
+});
 
-  getPropertyById(request, response) {
-    const id = parseInt(request.params.id, 10);
+const { Op } = Sequelize;
 
-    pool.query('SELECT * FROM dynasty WHERE dynasty_id = $1', [id], (error, results) => {
-      if (error) {
-        throw error;
-      }
-      response.status(200).json(results.rows);
-    });
-  }
-
-  createProperty(request, response) {
-    const {
-      dynasty_name,
-      dynasty_head,
-      dynasty_creator_id,
-      dynasty_start
-    } = request.body;
-
-    pool.query(
-      'INSERT INTO dynasty VALUES ($1, $2, $3, $4)',
-      [ dynasty_name,
-        dynasty_head,
-        dynasty_creator_id,
-        dynasty_start],
-      (error, results) => {
-        if (error) {
-          throw error;
-        }
-        response.status(201).send(`Dynasty added with ID: ${results.insertId}`);
+router.get('/search', (req, res) => {
+  Property.findAll({
+    where: {
+      property_name: {
+        [Op.or]: [].concat(req.query.property_name),
       },
-    );
-  }
+    },
+  }).then((property) => res.json(property));
+});
 
-  updateProperty(request, response) {
-    const id = parseInt(request.params.id, 10);
-    const {
-      dynasty_name,
-      dynasty_head,
-      dynasty_creator_id,
-      dynasty_start
-    } = request.body;
+router.get('/forID', (req, res) => {
+  Property.findAll({
+    where: {
+      property_name: req.query.property_name,
+    },
+  }).then((property) => res.send(property.id));
+});
 
-    pool.query(
-      'UPDATE users SET dynasty_name = $2, dynasty_head = $3, dynasty_creator_id = $4, dynasty_start = $5 WHERE dynasty_id = $1',
-      [ dynasty_name,
-        dynasty_head,
-        dynasty_creator_id,
-        dynasty_start],
-      (error, results) => {
-        if (error) {
-          throw error;
-        }
-        response.status(200).send(`Dynasty modified with ID: ${id}`);
-      },
-    );
-  }
+router.post('/', async (req, res) => {
+  Property.create(
+    {
+      property_size : req.body.property_size,
+      property_name : req.body.property_name,
+      property_type : req.body.property_type,
+      property_start : req.body.property_start,
+      property_creator_id : req.body.property_creator_id,
+    },
+    { validate: true },
+  ).then((property) => {
+    res.json(property);
+  }).catch((err) => {
+    if (err.name === 'SequelizeValidationError') {
+      res.status(401).send('The Data Types of the Data did not match the database');
+    }
+  });
+});
 
-  deleteProperty(request, response) {
-    const id = parseInt(request.params.id, 10);
-
-    pool.query('DELETE FROM dynasty WHERE dynasty_id = $1', [id], (error, results) => {
-      if (error) {
-        throw error;
-      }
-      response.status(200).send(`Dynasty deleted with ID: ${id}`);
+router.patch('/:id', (req, res) => {
+  Property.findByPk(req.params.id).then((property) => {
+    property.update({
+      property_size : req.body.property_size,
+      property_name : req.body.property_name,
+      property_type : req.body.property_type,
+      property_start : req.body.property_start,
+      property_creator_id : req.body.property_creator_id,
+    }).then((upProperty) => {
+      res.json(upProperty);
     });
-  }
-}
+  });
+});
 
-module.exports = personFunctions;
+router.delete('/:id', (req, res) => {
+  Property.findByPk(req.params.id).then((property) => {
+    property.destroy();
+  }).then(() => {
+    res.sendStatus(200);
+  });
+});
+
+export default router;

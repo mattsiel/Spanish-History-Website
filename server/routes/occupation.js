@@ -1,98 +1,82 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable no-unused-vars */
-/* eslint-disable camelcase */
-/* eslint-disable class-methods-use-this */
-/* eslint-disable linebreak-style */
-require('dotenv').config();
+/* eslint-disable import/extensions */
+import { Router } from 'express';
+import Sequelize from 'sequelize';
+import OccupationModel from '../models/occupation.model.js';
+import sequelize from '../middleware/sequelize.js';
 
-const { Pool } = require('pg');
+const Occupation = OccupationModel(sequelize, Sequelize);
 
-const pool = new Pool({
-  user: process.env.PGUSER,
-  host: process.env.PGHOST,
-  database: process.env.PGDATABASE,
-  password: process.env.PGPASSWORD,
-  port: process.env.PGPORT,
+const router = Router();
+
+router.get('/', (req, res) => {
+  Occupation.findAll().then((occupation) => res.json(occupation));
+  return res.status(200);
 });
 
-class personFunctions {
-  getOccupation(request, response) {
-    pool.query('SELECT * FROM occupation', (error, results) => {
-      if (error) {
-        throw error;
-      }
-      response.status(200).json(results.rows);
-    });
-  }
+router.get('/:id', (req, res) => {
+  Occupation.findAll({ where: { id: req.params.id } }).then((occupations) => res.json(occupations));
+  return res.status(200);
+});
 
-  getOccupationById(request, response) {
-    const id = parseInt(request.params.id, 10);
+const { Op } = Sequelize;
 
-    pool.query('SELECT * FROM occupation WHERE family_id = $1', [id], (error, results) => {
-      if (error) {
-        throw error;
-      }
-      response.status(200).json(results.rows);
-    });
-  }
-
-  createOccupation(request, response) {
-    const {
-        occupation_type,
-        occupation_start,
-        occupation_end,
-        person_id 
-    } = request.body;
-
-    pool.query(
-      'INSERT INTO occupation VALUES ($1, $2, $3, $4)',
-      [ occupation_type,
-        occupation_start,
-        occupation_end,
-        person_id ],
-      (error, results) => {
-        if (error) {
-          throw error;
-        }
-        response.status(201).send(`Occupation added with ID: ${results.insertId}`);
+router.get('/search', (req, res) => {
+  Occupation.findAll({
+    where: {
+      occupation_name: {
+        [Op.or]: [].concat(req.query.occupation_name),
       },
-    );
-  }
+    },
+  }).then((occupation) => res.json(occupation));
+});
 
-  updateOccupation(request, response) {
-    const id = parseInt(request.params.id, 10);
-    const {
-        occupation_type,
-        occupation_start,
-        occupation_end,
-        person_id
-    } = request.body;
+router.get('/forID', (req, res) => {
+  Occupation.findAll({
+    where: {
+      occupation_name: req.query.occupation_name,
+    },
+  }).then((occupation) => res.send(occupation.id));
+});
 
-    pool.query(
-      'UPDATE occupation SET occupation_type = $2, occupation_start = $3, occupation_start = $4, occupation_end = $5 WHERE occupation_id = $1',
-      [ occupation_type,
-        occupation_start,
-        occupation_end,
-        person_id ],
-      (error, results) => {
-        if (error) {
-          throw error;
-        }
-        response.status(200).send(`Occupation modified with ID: ${id}`);
-      },
-    );
-  }
+router.post('/', async (req, res) => {
+  Occupation.create(
+    {
+      occupation_type : req.body.occupation_type,
+      occupation_start : req.body.occupation_start,
+      occupation_end : req.body.occupation_end,
+      occupation_info : req.body.occupation_info,
+      person_id  : req.body.person_id,
+    },
+    { validate: true },
+  ).then((occupation) => {
+    res.json(occupation);
+  }).catch((err) => {
+    if (err.name === 'SequelizeValidationError') {
+      res.status(401).send('The Data Types of the Data did not match the database');
+    }
+  });
+});
 
-  deleteOccupation(request, response) {
-    const id = parseInt(request.params.id, 10);
-
-    pool.query('DELETE FROM occupation WHERE occupation_id = $1', [id], (error, results) => {
-      if (error) {
-        throw error;
-      }
-      response.status(200).send(`Occupation deleted with ID: ${id}`);
+router.patch('/:id', (req, res) => {
+  Occupation.findByPk(req.params.id).then((occupation) => {
+    occupation.update({
+      occupation_type : req.body.occupation_type,
+      occupation_start : req.body.occupation_start,
+      occupation_end : req.body.occupation_end,
+      occupation_info : req.body.occupation_info,
+      person_id  : req.body.person_id,
+    }).then((upOccupation) => {
+      res.json(upOccupation);
     });
-  }
-}
+  });
+});
 
-module.exports = personFunctions;
+router.delete('/:id', (req, res) => {
+  Occupation.findByPk(req.params.id).then((occupation) => {
+    occupation.destroy();
+  }).then(() => {
+    res.sendStatus(200);
+  });
+});
+
+export default router;

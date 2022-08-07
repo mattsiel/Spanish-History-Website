@@ -1,40 +1,23 @@
 
-CREATE TABLE "ownership" (
-	"ownership_id" serial NOT NULL,
-	"property_id" integer NOT NULL,
-	"person_id" integer NOT NULL,
-	"ownership_start" DATE,
-	"ownership_end" DATE,
-	"ownership_source" TEXT,
-	CONSTRAINT "ownership_pk" PRIMARY KEY ("ownership_id")
-) WITH (
-  OIDS=FALSE
-);
-
 
 const getOwnershipModel = (sequelize, { DataTypes }) => {
     const Ownership = sequelize.define('ownership', {
       property_id: {
-        type: DataTypes.STRING(100),
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
           notEmpty: true,
           notNull: true,
-          isAlpha: true, 
+          isInt: true, 
         },
       },
-      ownership_head: {
+      person_id: {
         type: DataTypes.INTEGER,
-        allowNull: true,
+        allowNull: false,
         validate: {
-          isInt: true,
-        },
-      },
-      ownership_creator_id: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-        validate: {
-          isInt: true,
+          notEmpty: true,
+          notNull: true,
+          isInt: true, 
         },
       },
       ownership_start: {
@@ -50,6 +33,10 @@ const getOwnershipModel = (sequelize, { DataTypes }) => {
         validate: {
           isDate: true,
         },
+      },     
+      ownership_source: {
+        type: DataTypes.TEXT,
+        allowNull: true,
       },
   
     });

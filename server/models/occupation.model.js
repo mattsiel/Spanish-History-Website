@@ -1,4 +1,3 @@
-
 const getOccupationModel = (sequelize, { DataTypes }) => {
     const Occupation = sequelize.define('occupation', {
       occupation_type: {

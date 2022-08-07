@@ -1,95 +1,84 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable no-unused-vars */
-/* eslint-disable camelcase */
-/* eslint-disable class-methods-use-this */
-/* eslint-disable linebreak-style */
-require('dotenv').config();
+/* eslint-disable import/extensions */
+import { Router } from 'express';
+import Sequelize from 'sequelize';
+import FamilyModel from '../models/family.model.js';
+import sequelize from '../middleware/sequelize.js';
 
-const { Pool } = require('pg');
+const Family = FamilyModel(sequelize, Sequelize);
 
-const pool = new Pool({
-  user: process.env.PGUSER,
-  host: process.env.PGHOST,
-  database: process.env.PGDATABASE,
-  password: process.env.PGPASSWORD,
-  port: process.env.PGPORT,
+const router = Router();
+
+router.get('/', (req, res) => {
+  Family.findAll().then((family) => res.json(family));
+  return res.status(200);
 });
 
-class FamilyFunctions {
-  getFamilys(request, response) {
-    pool.query('SELECT * FROM family', (error, results) => {
-      if (error) {
-        throw error;
-      }
-      response.status(200).json(results.rows);
-    });
-  }
+router.get('/:id', (req, res) => {
+  Family.findAll({ where: { id: req.params.id } }).then((familys) => res.json(familys));
+  return res.status(200);
+});
 
-  getFamilyById(request, response) {
-    const id = parseInt(request.params.id, 10);
+const { Op } = Sequelize;
 
-    pool.query('SELECT * FROM family WHERE family_id = $1', [id], (error, results) => {
-      if (error) {
-        throw error;
-      }
-      response.status(200).json(results.rows);
-    });
-  }
-
-  createFamily(request, response) {
-    const {
-      family_name,
-      dynasty_id,
-      family_head,
-      family_creator_id,
-    } = request.body;
-
-    pool.query(
-      'INSERT INTO family VALUES ($1, $2, $3, $4)',
-      [family_name, dynasty_id, family_head, family_creator_id],
-      (error, results) => {
-        if (error) {
-          throw error;
-        }
-        response.status(201).send(`Family added with ID: ${results.insertId}`);
+router.get('/search', (req, res) => {
+  Family.findAll({
+    where: {
+      family_name: {
+        [Op.or]: [].concat(req.query.family_name),
       },
-    );
-  }
+    },
+  }).then((family) => res.json(family));
+});
 
-  updateFamily(request, response) {
-    const id = parseInt(request.params.id, 10);
-    const {
-      family_name,
-      dynasty_id,
-      family_head,
-      family_creator_id,
-    } = request.body;
+router.get('/forID', (req, res) => {
+  Family.findAll({
+    where: {
+      family_name: req.query.family_name,
+    },
+  }).then((family) => res.send(family.id));
+});
 
-    pool.query(
-      'UPDATE family SET family_name = $2, dynasty_id = $3, family_head = $4, family_creator_id = $5 WHERE family_id = $1',
-      [family_name,
-        dynasty_id,
-        family_head,
-        family_creator_id],
-      (error, results) => {
-        if (error) {
-          throw error;
-        }
-        response.status(200).send(`Family modified with ID: ${id}`);
-      },
-    );
-  }
+router.post('/', async (req, res) => {
+  Family.create(
+    { 
+      family_name : req.body.family_name,
+      dynasty_id : req.body.dynasty_id,
+      family_head : req.body.family_head,
+      family_creator_id : req.body.family_creator_id,
+      family_start : req.body.family_start,
+      cadet_of : req.body.cadet_of,
+    },
+    { validate: true },
+  ).then((family) => {
+    res.json(family);
+  }).catch((err) => {
+    if (err.name === 'SequelizeValidationError') {
+      res.status(401).send('The Data Types of the Data did not match the database');
+    }
+  });
+});
 
-  deleteFamily(request, response) {
-    const id = parseInt(request.params.id, 10);
-
-    pool.query('DELETE FROM family WHERE family_id = $1', [id], (error, results) => {
-      if (error) {
-        throw error;
-      }
-      response.status(200).send(`Family deleted with ID: ${id}`);
+router.patch('/:id', (req, res) => {
+  Family.findByPk(req.params.id).then((family) => {
+    family.update({
+      family_name : req.body.family_name,
+      dynasty_id : req.body.dynasty_id,
+      family_head : req.body.family_head,
+      family_creator_id : req.body.family_creator_id,
+      family_start : req.body.family_start,
+      cadet_of : req.body.cadet_of,
+    }).then((upFamily) => {
+      res.json(upFamily);
     });
-  }
-}
+  });
+});
 
-module.exports = new FamilyFunctions();
+router.delete('/:id', (req, res) => {
+  Family.findByPk(req.params.id).then((family) => {
+    family.destroy();
+  }).then(() => {
+    res.sendStatus(200);
+  });
+});
+
+export default router;
