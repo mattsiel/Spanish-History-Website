@@ -5,7 +5,7 @@ services:
   #############################################################################################
   ibe-db:
     image: ibe-db
-    container_name: ibe-db
+    container_name: postgres-ibe
     build:
       context: ./postgres
       target: ibe-db
@@ -16,7 +16,7 @@ services:
       - POSTGRES_PASSWORD=${PGPASSWORD}
       - POSTGRES_DB=${PGDATABASE}
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD-SHELL", "pg_isready"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -34,8 +34,7 @@ services:
     networks:
       - ibe-net
     depends_on:
-      ibe-db:
-        condition: service_healthy
+      - ibe-db
     command: ['node', 'index.js']
 
 networks:
