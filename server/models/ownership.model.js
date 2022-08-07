@@ -14,7 +14,7 @@ CREATE TABLE "ownership" (
 
 const getOwnershipModel = (sequelize, { DataTypes }) => {
     const Ownership = sequelize.define('ownership', {
-      ownership_name: {
+      property_id: {
         type: DataTypes.STRING(100),
         allowNull: false,
         validate: {
@@ -35,6 +35,13 @@ const getOwnershipModel = (sequelize, { DataTypes }) => {
         allowNull: true,
         validate: {
           isInt: true,
+        },
+      },
+      ownership_start: {
+        type: DataTypes.DATEONLY,
+        allowNull: true,
+        validate: {
+          isDate: true,
         },
       },
       ownership_start: {

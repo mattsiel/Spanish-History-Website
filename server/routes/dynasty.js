@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import { Router } from 'express';
 import Sequelize from 'sequelize';
-import DynastyModel from '../models/Dynasty.model.js';
+import DynastyModel from '../models/dynasty.model.js';
 import sequelize from '../middleware/sequelize.js';
 
 const Dynasty = DynastyModel(sequelize, Sequelize);

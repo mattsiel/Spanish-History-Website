@@ -53,6 +53,7 @@ CREATE TABLE "occupation" (
 	"occupation_type" varchar NOT NULL,
 	"occupation_start" DATE,
 	"occupation_end" DATE,
+	"occupation_info" TEXT,
 	"person_id" integer NOT NULL,
 	CONSTRAINT "occupation_pk" PRIMARY KEY ("occupation_id")
 ) WITH (
