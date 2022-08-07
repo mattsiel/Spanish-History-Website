@@ -8,7 +8,7 @@ const sequelize = new Sequelize(
   process.env.PGUSER,
   process.env.PGPASSWORD,
   {
-    host: '127.0.0.1',
+    host: 'ibe-db',
     dialect: 'postgres',
     port: process.env.PGPORT,
   },

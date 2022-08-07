@@ -35,6 +35,9 @@ services:
       - ibe-net
     depends_on:
       - ibe-db
+    volumes:
+      - ./ibe-api:/src/
+      - ./node_modules:/node_modules
     command: ['node', 'index.js']
 
 networks:
