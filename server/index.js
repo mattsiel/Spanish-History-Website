@@ -15,6 +15,7 @@ import FamilyRoute from './routes/family.js';
 
 // inits
 import initDynasty from './init/initialDynasty.js';
+import initIberianFamilies from './init/iberia/initialFamily.js';
 
 const app = express();
 
@@ -46,6 +47,7 @@ app.use('/person', PersonRoute);
 app.use('/family', FamilyRoute);
 app.use('/dynasty', DynastyRoute);
 initDynasty();
+initIberianFamilies();
 
 app.listen(port, () => {
   console.log(`App running on port ${port}. pg port access from ${process.env.PGPORT}`);

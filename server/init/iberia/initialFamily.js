@@ -8,13 +8,14 @@ import FamilyModel from '../../models/family.model.js';
 const Family = FamilyModel(sequelize, Sequelize);
 const eraseDatabaseOnSync = true;
 
+import { dynastyFind , familyFind } from '../../middleware/findID.js';
 
 
 const createFamily = () => {
   Family.bulkCreate([
     {
       family_name : 'Barcelona',
-      dynasty_id : 1,
+      dynasty_id : dynastyFind('Bellonid'),
       family_head : null,
       family_creator_id : null,
       family_start : '0878-01-01',
@@ -22,27 +23,27 @@ const createFamily = () => {
     },
     {
       family_name : 'Cerdanya',
-      dynasty_id : 1,
+      dynasty_id : dynastyFind('Bellonid'),
       family_head : null,
       family_creator_id : null,
       family_start : '0878-01-01',
-      cadet_of : barcelonaID,
+      cadet_of : familyFind('Barcelona'),
     },
     {
       family_name : 'Urgell',
-      dynasty_id : 1,
+      dynasty_id : dynastyFind('Bellonid'),
       family_head : null,
       family_creator_id : null,
       family_start : '0974-01-01',
-      cadet_of : barcelonaID,
+      cadet_of : familyFind('Barcelona'),
     },
     {
       family_name : 'Forcalquier',
-      dynasty_id : 1,
+      dynasty_id : dynastyFind('Bellonid'),
       family_head : null,
       family_creator_id : null,
       family_start : '1094-01-01',
-      cadet_of : 3,
+      cadet_of : familyFind('Urgell'),
     },
     { validate: false },
   ]);
