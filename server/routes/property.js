@@ -31,11 +31,19 @@ router.get('/search', (req, res) => {
 });
 
 router.get('/forID', (req, res) => {
-  Property.findAll({
+  Property.findOne({
     where: {
       property_name: req.query.property_name,
     },
   }).then((property) => res.send(property.id));
+});
+
+router.get('/searchType', (req, res) => {
+  Property.findAll({
+    where: {
+      property_type : req.query.property_type,
+    },
+  }).then((property) => res.send(property));
 });
 
 router.post('/', async (req, res) => {

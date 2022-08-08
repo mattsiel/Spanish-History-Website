@@ -30,12 +30,20 @@ router.get('/search', (req, res) => {
   }).then((ownership) => res.json(ownership));
 });
 
-router.get('/forID', (req, res) => {
+router.get('/searchPerson', (req, res) => {
   Ownership.findAll({
     where: {
-      ownership_name: req.query.ownership_name,
+      person_id : req.query.person_id,
     },
-  }).then((ownership) => res.send(ownership.id));
+  }).then((ownership) => res.send(ownership));
+});
+
+router.get('/searchProperty', (req, res) => {
+  Ownership.findAll({
+    where: {
+      property_id : req.query.property_id,
+    },
+  }).then((ownership) => res.send(ownership));
 });
 
 router.post('/', async (req, res) => {

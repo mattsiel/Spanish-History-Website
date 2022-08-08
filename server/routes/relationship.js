@@ -20,11 +20,11 @@ router.get('/:id', (req, res) => {
 
 const { Op } = Sequelize;
 
-router.get('/search', (req, res) => {
+router.get('/searchPeople', (req, res) => {
   Relationship.findAll({
     where: {
       relationship_name: {
-        [Op.or]: [].concat(req.query.relationship_name),
+        [Op.or]: [].concat(req.query.person_1, req.query.person_2),
       },
     },
   }).then((relationship) => res.json(relationship));
@@ -33,7 +33,7 @@ router.get('/search', (req, res) => {
 router.get('/forID', (req, res) => {
   Relationship.findAll({
     where: {
-      relationship_name: req.query.relationship_name,
+      relationship_type : req.query.relationship_type,
     },
   }).then((relationship) => res.send(relationship.id));
 });
@@ -41,7 +41,6 @@ router.get('/forID', (req, res) => {
 router.post('/', async (req, res) => {
   Relationship.create(
     {
-      relationship_id : req.body.relationship_id,
       relationship_type : req.body.relationship_type,
       relationship_start : req.body.relationship_start,
       relationship_end : req.body.relationship_end,
@@ -65,7 +64,6 @@ router.post('/', async (req, res) => {
 router.patch('/:id', (req, res) => {
   Relationship.findByPk(req.params.id).then((relationship) => {
     relationship.update({
-      relationship_id : req.body.relationship_id,
       relationship_type : req.body.relationship_type,
       relationship_start : req.body.relationship_start,
       relationship_end : req.body.relationship_end,

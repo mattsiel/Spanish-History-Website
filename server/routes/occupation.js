@@ -20,22 +20,22 @@ router.get('/:id', (req, res) => {
 
 const { Op } = Sequelize;
 
-router.get('/search', (req, res) => {
+router.get('/searchType', (req, res) => {
   Occupation.findAll({
     where: {
-      occupation_name: {
-        [Op.or]: [].concat(req.query.occupation_name),
+      occupation_type: {
+        [Op.or]: [].concat(req.query.occupation_type),
       },
     },
   }).then((occupation) => res.json(occupation));
 });
 
-router.get('/forID', (req, res) => {
+router.get('/forPerson', (req, res) => {
   Occupation.findAll({
     where: {
-      occupation_name: req.query.occupation_name,
+      person_id  : req.body.person_id,
     },
-  }).then((occupation) => res.send(occupation.id));
+  }).then((occupation) => res.send(occupation));
 });
 
 router.post('/', async (req, res) => {

@@ -23,8 +23,8 @@ const { Op } = Sequelize;
 router.get('/search', (req, res) => {
   Person.findAll({
     where: {
-      person_name: {
-        [Op.or]: [].concat(req.query.person_name),
+      name_first: {
+        [Op.or]: [].concat(req.query.name_first),
       },
     },
   }).then((person) => res.json(person));
@@ -33,9 +33,26 @@ router.get('/search', (req, res) => {
 router.get('/forID', (req, res) => {
   Person.findAll({
     where: {
-      person_name: req.query.person_name,
+      name_first : req.query.name_first,
+      name_last : req.query.name_last,
     },
   }).then((person) => res.send(person.id));
+});
+
+router.get('/searchDynasty', (req, res) => {
+  Person.findAll({
+    where: {
+      dynasty_id : req.query.dynasty_id,
+    },
+  }).then((person) => res.send(person));
+});
+
+router.get('/searchFamily', (req, res) => {
+  Person.findAll({
+    where: {
+      family_id : req.query.family_id,
+    },
+  }).then((person) => res.send(person));
 });
 
 router.post('/', async (req, res) => {

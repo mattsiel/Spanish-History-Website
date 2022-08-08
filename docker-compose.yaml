@@ -39,6 +39,26 @@ services:
       - ./ibe-api:/src/
       - ./node_modules:/node_modules
     command: ['node', 'index.js']
+  # 
+  # keycloak:
+  #     image: quay.io/keycloak/keycloak:latest
+  #     build:
+  #       context: ./keycloak
+  #     environment:
+  #       DB_VENDOR: POSTGRES
+  #       DB_ADDR: postgres
+  #       DB_DATABASE: keycloak
+  #       DB_USER: postgres
+  #       DB_SCHEMA: public
+  #       DB_PASSWORD: postgres
+  #       KEYCLOAK_USER: admin
+  #       KEYCLOAK_PASSWORD: admin
+  #     ports:
+  #       - 8080:8080
+  #     networks:
+  #     - ibe-net
+  #     depends_on:
+  #       - postgres
 
 networks:
   ibe-net:

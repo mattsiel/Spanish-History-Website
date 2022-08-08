@@ -20,22 +20,32 @@ router.get('/:id', (req, res) => {
 
 const { Op } = Sequelize;
 
-router.get('/search', (req, res) => {
+
+router.get('/searchPerson', (req, res) => {
   Parent.findAll({
     where: {
-      parent_name: {
-        [Op.or]: [].concat(req.query.parent_name),
-      },
+      person_id : req.query.person_id,
     },
-  }).then((parent) => res.json(parent));
+  }).then((parent) => res.send(parent));
 });
 
-router.get('/forID', (req, res) => {
+router.get('/searchParent', (req, res) => {
   Parent.findAll({
     where: {
-      parent_name: req.query.parent_name,
+      parent_person_id : req.query.parent_person_id,
     },
-  }).then((parent) => res.send(parent.id));
+  }).then((parent) => res.send(parent));
+});
+
+router.get('/findChildren', (req, res) => {
+  const children = [];
+  Parent.findAll({
+    where: {
+      parent_person_id : req.query.parent_person_id,
+    },
+  }).then((parent) => children.push(parent.person_id));
+
+  return children;
 });
 
 router.post('/', async (req, res) => {
