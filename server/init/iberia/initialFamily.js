@@ -6,7 +6,6 @@ import sequelize from '../../middleware/sequelize.js';
 import FamilyModel from '../../models/family.model.js';
 
 const Family = FamilyModel(sequelize, Sequelize);
-const eraseDatabaseOnSync = true;
 
 import { dynastyFind , familyFind } from '../../middleware/findID.js';
 
@@ -50,10 +49,8 @@ const createFamily = () => {
 };
 
 const initFamily = async () => {
-  sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
-    if (eraseDatabaseOnSync) {
-      createFamily();
-    }
+  sequelize.sync().then(async () => {
+    createFamily();
   });
 };
 

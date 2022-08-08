@@ -5,7 +5,7 @@ services:
   #############################################################################################
   ibe-db:
     image: ibe-db
-    container_name: postgres-ibe
+    container_name: ibe-db
     build:
       context: ./postgres
       target: ibe-db

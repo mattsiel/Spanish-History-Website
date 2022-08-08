@@ -6,7 +6,6 @@ import sequelize from '../middleware/sequelize.js';
 import DynastyModel from '../models/dynasty.model.js';
 
 const Dynasty = DynastyModel(sequelize, Sequelize);
-const eraseDatabaseOnSync = true;
 
 const createDynasty = () => {
   Dynasty.bulkCreate([
@@ -50,10 +49,8 @@ const createDynasty = () => {
 };
 
 const initDynasty = async () => {
-  sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
-    if (eraseDatabaseOnSync) {
-      createDynasty();
-    }
+  sequelize.sync().then(async () => {
+    createDynasty();
   });
 };
 
