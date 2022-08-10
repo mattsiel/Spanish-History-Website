@@ -47,9 +47,13 @@ app.get('/', (request, response) => {
 app.use('/person', PersonRoute);
 app.use('/family', FamilyRoute);
 app.use('/dynasty', DynastyRoute);
-initRemove();
-initDynasty();
-initIberianFamilies();
+
+
+const initialize = async () => {
+  await initRemove();
+  await initDynasty();
+  await initIberianFamilies();
+}
 
 app.listen(port, () => {
   console.log(`App running on port ${port}. pg port access from ${process.env.PGPORT}`);

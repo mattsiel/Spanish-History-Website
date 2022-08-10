@@ -6,7 +6,7 @@ import DynastyModel from '../models/dynasty.model.js';
 const Family = FamilyModel(sequelize, Sequelize);
 const Dynasty = DynastyModel(sequelize, Sequelize);
 
-const removeAll = () => {
+const removeAll = async () => {
     await Family.destroy({
         where: { id:18},
         truncate: true
@@ -19,7 +19,7 @@ const removeAll = () => {
 };
 
 const initRemove = async () => {
-    sequelize.sync({ force: true }).then(async () => {
+    await sequelize.sync({ force: true }).then(async () => {
       removeAll();
     });
   };
