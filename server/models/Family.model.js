@@ -9,14 +9,14 @@ const getFamilyModel = (sequelize, { DataTypes }) => {
           isAlpha: true, 
         },
       },
-      family_head: {
+      dynasty_id: {
         type: DataTypes.INTEGER,
         allowNull: true,
         validate: {
           isInt: true,
         },
       },
-      dynasty_id: {
+      family_head: {
         type: DataTypes.INTEGER,
         allowNull: true,
         validate: {

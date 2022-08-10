@@ -15,16 +15,16 @@ const dynastyFind = async (dynastyName) => {
       dynasty_name: dynastyName,
     }
   });
-
-  console.log('the dynasty');
-  console.log(findDynasty);
   return findDynasty.id;
 };
 
-const familyFind = async (familyName) => await (Family.findOne({
-  where: {
-    family_name: familyName,
-  }
-})).id;
+const familyFind = async (familyName) =>{
+  const findFamily = await Family.findOne({
+    where: {
+      family_name: familyName,
+    }
+  });
+  return findFamily.id;
+};
 
 export { dynastyFind , familyFind };

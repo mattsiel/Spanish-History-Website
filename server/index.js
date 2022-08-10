@@ -16,6 +16,7 @@ import FamilyRoute from './routes/family.js';
 // inits
 import initDynasty from './init/initialDynasty.js';
 import initIberianFamilies from './init/iberia/initialFamily.js';
+import initRemove from './init/iberia/removeAll.js';
 
 const app = express();
 
@@ -46,6 +47,7 @@ app.get('/', (request, response) => {
 app.use('/person', PersonRoute);
 app.use('/family', FamilyRoute);
 app.use('/dynasty', DynastyRoute);
+initRemove();
 initDynasty();
 initIberianFamilies();
 
