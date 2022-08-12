@@ -16,21 +16,21 @@ do
             cd postgres/db
             echo " "
             sh init.sh
-            cd ../
+            cd ../../
             ;;
         "Backup")
             echo "you chose to backup the data"
             cd postgres/db
             echo " "
             sh backup.sh
-            cd ../
+            cd ../../
             ;;
         "Restore")
             echo "you chose to restore the data"
             cd postgres/db
             echo " "
             sh restore.sh
-            cd ../
+            cd ../../
             ;;
         "Quit")
             break

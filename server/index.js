@@ -16,7 +16,7 @@ import FamilyRoute from './routes/family.js';
 // inits
 import initDynasty from './init/initialDynasty.js';
 import initIberianFamilies from './init/iberia/initialFamily.js';
-import initRemove from './init/iberia/removeAll.js';
+import { Delete } from './init/removeAll.js';
 
 const app = express();
 
@@ -50,10 +50,12 @@ app.use('/dynasty', DynastyRoute);
 
 
 const initialize = async () => {
-  await initRemove();
+  await Delete();
   await initDynasty();
   await initIberianFamilies();
 }
+
+initialize();
 
 app.listen(port, () => {
   console.log(`App running on port ${port}. pg port access from ${process.env.PGPORT}`);

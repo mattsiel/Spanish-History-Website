@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 4000,
+            "askForPassword": true,
+            "driver": "PostgreSQL",
+            "username": "mattsii",
+            "database": "ibe-db",
+            "name": "ibe-db-connect"
+        }
+    ]
+}
