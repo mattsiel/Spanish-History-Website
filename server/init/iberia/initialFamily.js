@@ -22,6 +22,14 @@ const createFamily = async () => {
       family_start : '0878-01-01',
       cadet_of : null,
     },
+    {
+      family_name : 'Ivrea',
+      dynasty_id : await dynastyFind('Anscarid'),
+      family_head : null,
+      family_creator_id : null,
+      family_start : '0878-01-01',
+      cadet_of : null,
+    },
   ])
 
   // Second Generation Houses

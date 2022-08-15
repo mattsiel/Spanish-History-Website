@@ -97,7 +97,6 @@ const getPersonModel = (sequelize, { DataTypes }) => {
         isInt: true,
       },
     },
-
   });
   return Person;
 };

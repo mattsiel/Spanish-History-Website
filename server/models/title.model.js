@@ -10,26 +10,45 @@ const getTitleModel = (sequelize, { DataTypes }) => {
           isAlpha: true, 
         },
       },
-      title_head: {
+      title_rank: {
         type: DataTypes.INTEGER,
         allowNull: true,
         validate: {
           isInt: true,
         },
       },
-      title_creator_id: {
-        type: DataTypes.INTEGER,
+
+      title_holders: {
+        type: DataTypes.ARRAY(DataTypes.INTEGER),
         allowNull: true,
         validate: {
           isInt: true,
         },
       },
-      title_start: {
-        type: DataTypes.DATEONLY,
+      title_holder_start: {
+        type: DataTypes.ARRAY(DataTypes.DATEONLY),
         allowNull: true,
         validate: {
           isDate: true,
         },
+      },
+      title_holder_end: {
+        type: DataTypes.ARRAY(DataTypes.DATEONLY),
+        allowNull: true,
+        validate: {
+          isInt: true,
+        },
+      },
+      part_of: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        validate: {
+          isInt: true,
+        },
+      },
+      title_info: {
+        type: DataTypes.TEXT,
+        allowNull: true,
       },
   
     });
