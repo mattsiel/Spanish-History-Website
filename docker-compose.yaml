@@ -3,6 +3,20 @@ services:
   #############################################################################################
   ###                                     Express API                                       ###
   #############################################################################################
+  ibe-app:
+    image: ibe-app
+    container_name: ibe-app
+    build:
+      context: ./app
+    networks:
+      - ibe-net
+    ports:
+     - 3002:3002
+    volumes:
+      - ./app:/src/app/ibe-app
+      - ./app/node_modules:/src/app/ibe-app/node_modules
+ 
+
   ibe-db:
     image: ibe-db
     container_name: postgres-ibe
@@ -36,8 +50,8 @@ services:
     depends_on:
       - ibe-db
     volumes:
-      - ./ibe-api:/src/
-      - ./node_modules:/node_modules
+      - ./server:/src/app/ibe-api
+      - ./server/node_modules:/src/app/ibe-api/node_modules
     command: ['node', 'index.js']
   # 
   # keycloak:
