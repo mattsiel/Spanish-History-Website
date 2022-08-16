@@ -12,10 +12,12 @@ import swaggerConf from './swagger-config.js';
 import DynastyRoute from './routes/dynasty.js';
 import PersonRoute from './routes/person.js';
 import FamilyRoute from './routes/family.js';
+import LocationRoute from './routes/location.js';
 
 // inits
 import initDynasty from './init/initialDynasty.js';
 import initIberianFamilies from './init/iberia/initialFamily.js';
+import initIberianLocations from './init/iberia/initalLocation.js';
 import { Delete } from './init/removeAll.js';
 
 const app = express();
@@ -23,7 +25,7 @@ const app = express();
 const port = process.env.API_PORT;
 
 const corsOptions = {
-  origin: 'http://localhost:3002',
+  origin: 'http://localhost:3500',
 };
 
 app.use(cors(corsOptions));
@@ -47,12 +49,14 @@ app.get('/', (request, response) => {
 app.use('/person', PersonRoute);
 app.use('/family', FamilyRoute);
 app.use('/dynasty', DynastyRoute);
+app.use('/location', LocationRoute);
 
 
 const initialize = async () => {
   await Delete();
   await initDynasty();
   await initIberianFamilies();
+  await initIberianLocations();
 }
 
 initialize();

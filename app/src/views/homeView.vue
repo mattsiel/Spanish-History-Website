@@ -1,11 +1,10 @@
 <script setup>
-import TheMap from '../components/TheMap.vue'
-import FamilyForm from '../components/FamilyForm.vue';
+import Map from '../components/Map.vue';
 </script>
 
 <template>
   <main>
-    <FamilyForm />
+    <Map />
   </main>
 </template>
 

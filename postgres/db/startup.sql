@@ -97,7 +97,7 @@ CREATE TABLE "property" (
 
 
 CREATE TABLE "ownership" (
-	"ownership_id" serial NOT NULL,
+	"ownership_id" serial NOT NULL UNIQUE,
 	"property_id" integer NOT NULL,
 	"person_id" integer NOT NULL,
 	"ownership_start" DATE,
@@ -111,7 +111,7 @@ CREATE TABLE "ownership" (
 
 
 CREATE TABLE "parent" (
-	"parent_id" serial NOT NULL,
+	"parent_id" serial NOT NULL UNIQUE,
 	"person_id" integer NOT NULL,
 	"parent_person_id" integer NOT NULL,
 	"parent_type" varchar NOT NULL,
@@ -120,6 +120,34 @@ CREATE TABLE "parent" (
   OIDS=FALSE
 );
 
+CREATE TABLE "location" (
+	"location_id" serial NOT NULL UNIQUE,
+	"location_name" varchar NOT NULL,
+	"location_alt_names" varchar,
+	"population" integer,
+	"location_north" decimal(10, 2) NOT NULL,
+	"location_east" decimal(10, 2) NOT NULL,
+	"location_info" TEXT,
+	"location_sources" TEXT,
+	CONSTRAINT "location_pk" PRIMARY KEY ("location_id")
+) WITH (
+  OIDS=FALSE
+);
+
+CREATE TABLE "title" (
+	"title_id" serial NOT NULL UNIQUE,
+	"title_name" varchar NOT NULL,
+	"title_rank" varchar NOT NULL,
+	"title_holders" varchar [],
+	"title_holder_start" DATE [],
+	"title_holder_end" DATE [],
+	"part_of" varchar,
+	"title_info" TEXT,
+	"title_sources" TEXT,
+	CONSTRAINT "title_pk" PRIMARY KEY ("title_id")
+) WITH (
+  OIDS=FALSE
+);
 
 
 ALTER TABLE "person" ADD CONSTRAINT "person_fk0" FOREIGN KEY ("family_id") REFERENCES "family"("family_id");

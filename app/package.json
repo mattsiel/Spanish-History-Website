@@ -2,13 +2,14 @@
   "name": "vue_test",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite --port 3002",
+    "dev": "vite --port 3500",
     "build": "vite build",
     "preview": "vite preview --port 4173",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "leaflet": "^1.8.0",
     "pinia": "^2.0.14",
     "vue": "^3.2.36",
     "vue-router": "^4.0.15"

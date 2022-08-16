@@ -11,7 +11,7 @@ services:
     networks:
       - ibe-net
     ports:
-     - 3002:3002
+     - 3500:3500
     volumes:
       - ./app:/src/app/ibe-app
       - ./app/node_modules:/src/app/ibe-app/node_modules

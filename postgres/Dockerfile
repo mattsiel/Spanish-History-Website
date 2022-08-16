@@ -1,5 +1,5 @@
 FROM postgres:12 as ibe-db
-WORKDIR /app
+WORKDIR /app/database
 
 
 COPY ./db/init.sh /docker-entrypoint-initdb.d
