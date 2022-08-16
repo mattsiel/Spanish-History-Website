@@ -1,286 +1,511 @@
 {
 	"info": {
-		"_postman_id": "d6486db4-2d48-4e63-b805-ad3dcccb69f4",
+		"_postman_id": "bb6da5e0-dc58-43ce-b4fb-422f96fb8af5",
 		"name": "Iberia Tests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "21491673"
+		"_exporter_id": "21139569"
 	},
 	"item": [
 		{
-			"name": "Get all People",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "People",
+			"item": [
+				{
+					"name": "Get all People",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3100/person",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"person"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:3100/person",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3100",
-					"path": [
-						"person"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Person by ID",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Get Person by ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3100/person/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"person",
+								""
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:3100/person/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3100",
-					"path": [
-						"person",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create new Person",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "\r\n{\r\n    \"name_first\": \"world2\",\r\n    \"gender\":\"M\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Create new Person",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"name_first\": \"world2\",\r\n    \"gender\":\"M\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3100/person",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"person"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:3100/person",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3100",
-					"path": [
-						"person"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Remove Person by ID",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Remove Person by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3100/users/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"users",
+								"2"
+							]
 						}
-					}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dynasty",
+			"item": [
+				{
+					"name": "Get all Dynasty",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"host": true,
+							"user-agent": true,
+							"accept": true,
+							"connection": true,
+							"accept-encoding": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3100/dynasty",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"dynasty"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:3100/users/2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3100",
-					"path": [
-						"users",
-						"2"
-					]
+				{
+					"name": "Get Dynasty by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3100/dynasty/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"dynasty",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new Dynasty",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dynasty_name\" : \"matt\",\r\n    \"dynasty_head\" : 101,\r\n    \"dynasty_creator_id\": 101,\r\n    \"dynasty_start\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3100/dynasty",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"dynasty"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Dynasty by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3100/dynasty/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"dynasty",
+								"2"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Get all Dynasty",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3100/dynasty",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3100",
-					"path": [
-						"dynasty"
-					]
+			"name": "Family",
+			"item": [
+				{
+					"name": "Remove Family by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3100/family/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"family",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Family",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3100/family",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"family"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Family by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3100/family/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"family",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new Family",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3100/family",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"family"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Get Dynasty by ID",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3100/dynasty/2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3100",
-					"path": [
-						"dynasty",
-						"2"
-					]
-				}
-			},
-			"response": []
+			"name": "Title",
+			"item": []
 		},
 		{
-			"name": "Create new Dynasty",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3100/dynasty",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3100",
-					"path": [
-						"dynasty"
+			"name": "Location",
+			"item": [
+				{
+					"name": "Remove Location by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3100/family/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"family",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Location",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3100/family",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"family"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Location By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3100/location/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"location",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new Location",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3100/family",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"family"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add Paris",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3100/family",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3100",
+									"path": [
+										"family"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": " {\r\n    \"location_name\": \"Paris\",\r\n    \"location_alt_names\": null,\r\n    \"location_north\": \"48.86\",\r\n    \"location_east\": \"2.34\",\r\n    \"population\": null,\r\n    \"location_info\": null,\r\n    \"location_sources\": null\r\n}"
+						}
 					]
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Remove Dynasty by ID",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3100/dynasty/2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3100",
-					"path": [
-						"dynasty",
-						"2"
-					]
+			"name": "Property",
+			"item": [
+				{
+					"name": "Remove Property by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3100/property",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"property"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Property",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3100/property",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"property"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Property by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3100/property/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"property",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new Property",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3100/property",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3100",
+							"path": [
+								"property"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get all Family",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3100/family",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3100",
-					"path": [
-						"family"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Family by ID",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3100/family/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3100",
-					"path": [
-						"family",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create new Family",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3100/family",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3100",
-					"path": [
-						"family"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Remove Family by ID",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3100/family/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3100",
-					"path": [
-						"family",
-						"1"
-					]
-				}
-			},
-			"response": []
+			]
 		}
 	]
 }

@@ -7,6 +7,8 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import axios from "axios";
 
+
+
 export default {
   data() {
     return {
@@ -23,13 +25,19 @@ export default {
         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(this.map);
     //use a mix of renderers
-    const customPane = this.map.createPane("customPane");
-    const canvasRenderer = L.canvas({ pane: "customPane" });
-    customPane.style.zIndex = 399; // put just behind the standard overlay pane which is at 400
-
+    
     // Markers (N,E)
     (locations.data).map((location) => L.marker([location.location_north, location.location_east])
-    .bindPopup(`this is ${location.location_name}`).openPopup().addTo(this.map));
+    .bindPopup(`${location.location_name}`).openPopup().addTo(this.map));
+
+    function onMapClick(e) {
+      console.log(e.latlng);
+        L.marker([e.latlng.lat,e.latlng.lng])
+            .bindPopup("You clicked the map at " + e.latlng.toString())
+            .openPopup().addTo(this.map);
+    }
+
+    this.map.on('click', onMapClick);
   },
   onBeforeUnmount() {
     if (this.map) {
