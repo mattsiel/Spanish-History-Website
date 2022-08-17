@@ -15,7 +15,12 @@ const dynastyFind = async (dynastyName) => {
       dynasty_name: dynastyName,
     }
   });
-  return findDynasty.id;
+
+  try {
+    return findDynasty.id;
+  } catch(e){
+    return null;
+  }
 };
 
 const familyFind = async (familyName) =>{
@@ -24,7 +29,12 @@ const familyFind = async (familyName) =>{
       family_name: familyName,
     }
   });
-  return findFamily.id;
+    
+  try {
+    return findFamily.id;
+  } catch(e){
+    return null;
+  }
 };
 
 export { dynastyFind , familyFind };

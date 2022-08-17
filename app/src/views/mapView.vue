@@ -1,15 +1,24 @@
+<script>
+import Sidebar from "../components/Sidebar.vue";
+import IbeMap from '../components/IbeMap.vue';
+//   <Sidebar />
+
+export default {
+  name: "App",
+  components: { Sidebar, IbeMap },
+};
+</script>
+
 <template>
-  <div class="map">
-    <h1>This is an map page</h1>
+  <div id="app" class="flex min-h-screen antialiased">
+    <IbeMap />
+    <Sidebar />
   </div>
 </template>
 
 <style>
-@media (min-width: 1024px) {
-  .map {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
+#app {
+  width: 100%;
+  height: 80%;
 }
 </style>

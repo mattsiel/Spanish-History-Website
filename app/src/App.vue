@@ -14,5 +14,4 @@ import TopBar from '@/components/TopBar.vue'
 
 <style>
 @import '@/assets/base.css';
-
 </style>
