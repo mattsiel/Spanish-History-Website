@@ -28,7 +28,7 @@ export default {
     
     // Markers (N,E)
     (locations.data).map((location) => L.marker([location.location_north, location.location_east])
-    .bindPopup(`${location.location_name}`).openPopup().addTo(this.map));
+    .bindPopup(`this is ${location.location_name}`).openPopup().addTo(this.map));
 
     function onMapClick(e) {
       console.log(e.latlng);

@@ -10,11 +10,15 @@ services:
       context: ./app
     networks:
       - ibe-net
+    depends_on:
+      - ibe-db
+      - ibe-api
     ports:
      - 3500:3500
-    volumes:
-      - ./app:/src/app/ibe-app
-      - ./app/node_modules:/src/app/ibe-app/node_modules
+    command: ['npm', 'run', 'dev']
+    #volumes:
+    #  - ./app:/src/app/ibe-app
+    #  - ./app/node_modules:/src/app/ibe-app/node_modules
  
 
   ibe-db:
@@ -49,9 +53,9 @@ services:
       - ibe-net
     depends_on:
       - ibe-db
-    volumes:
-      - ./server:/src/app/ibe-api
-      - ./server/node_modules:/src/app/ibe-api/node_modules
+    #volumes:
+    #  - ./server:/src/app/ibe-api
+    #  - ./server/node_modules:/src/app/ibe-api/node_modules
     command: ['node', 'index.js']
   # 
   # keycloak:
