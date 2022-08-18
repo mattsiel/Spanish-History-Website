@@ -1,16 +1,15 @@
 FROM node:18-alpine
 
-# make the 'app' folder the current working directory
-WORKDIR /app/frontend
-# copy project files and folders to the current working directory (i.e. 'app' folder)
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+
+RUN npm ci
+
 COPY . .
 
-# install project dependencies
-RUN npm install
-
-
-# build app for production with minification
 RUN npm run build
 
+EXPOSE 3500
 
 CMD ["npm", "run", "dev"]

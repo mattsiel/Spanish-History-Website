@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import mapView from '../views/mapView.vue'
-import IbeMap from '../components/IbeMap.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

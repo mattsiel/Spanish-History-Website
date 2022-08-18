@@ -8,18 +8,16 @@ services:
     container_name: ibe-app
     build:
       context: ./app
+      dockerfile: Dockerfile
     networks:
       - ibe-net
     depends_on:
       - ibe-db
       - ibe-api
+    expose:
+      - 3500
     ports:
      - 3500:3500
-    command: ['npm', 'run', 'dev']
-    #volumes:
-    #  - ./app:/src/app/ibe-app
-    #  - ./app/node_modules:/src/app/ibe-app/node_modules
- 
 
   ibe-db:
     image: ibe-db
@@ -47,17 +45,14 @@ services:
     container_name: ibe-api
     build:
       context: ./server
+      dockerfile: Dockerfile
     ports:
       - 3100:3100
     networks:
       - ibe-net
     depends_on:
       - ibe-db
-    #volumes:
-    #  - ./server:/src/app/ibe-api
-    #  - ./server/node_modules:/src/app/ibe-api/node_modules
-    command: ['node', 'index.js']
-  # 
+
   # keycloak:
   #     image: quay.io/keycloak/keycloak:latest
   #     build:

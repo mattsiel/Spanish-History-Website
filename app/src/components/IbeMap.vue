@@ -8,8 +8,9 @@ import L from "leaflet";
 import axios from "axios";
 import { useLocationStore } from '../stores/location.js'
 import geoJSON from "../assets/geoJson/spanishCommunities.json";
-//https://codesandbox.io/s/leaflet-canvas-geojson-click-forked-ksres?file=/index.js
-//https://onthegrid.city/
+// https://codesandbox.io/s/leaflet-canvas-geojson-click-forked-ksres?file=/index.js
+// https://onthegrid.city/
+// https://geojson.io/#map=8/40.462/-9.635
 
 
 export default {
@@ -36,7 +37,7 @@ export default {
       onEachFeature: function (feature, layer) {
         let name = feature.properties.name;
         layer.on("click", function (e) {
-           let popup = new L.Popup().setContent("You clicked the map at " + name)
+           let popup = new L.Popup().setContent(name)
           popup.setLatLng(e.latlng);
           return popup.addTo(map);
         });
