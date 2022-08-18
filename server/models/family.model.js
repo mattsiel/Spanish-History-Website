@@ -9,6 +9,15 @@ const getFamilyModel = (sequelize, { DataTypes }) => {
           isAlpha: true, 
         },
       },
+      family_culture: {
+        type: DataTypes.STRING(50),
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+          notNull: true,
+          isAlpha: true, 
+        },
+      },
       dynasty_id: {
         type: DataTypes.INTEGER,
         allowNull: true,

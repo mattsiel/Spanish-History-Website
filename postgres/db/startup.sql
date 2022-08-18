@@ -23,7 +23,8 @@ CREATE TABLE "person" (
 
 CREATE TABLE "family" (
 	"family_id" serial NOT NULL UNIQUE,
-	"family_name" varchar NOT NULL,
+	"family_name" varchar(100) NOT NULL,
+	"family_name" varchar(50) NOT NULL,
 	"dynasty_id" integer,
 	"family_head" integer,
 	"family_creator_id" integer,

@@ -10,14 +10,15 @@ export default {
 </script>
 
 <template>
-  <div id="app" class="flex min-h-screen antialiased">
+  <div id="map-view" >
     <IbeMap />
     <Sidebar />
   </div>
 </template>
 
 <style>
-#app {
+#map-view {
+  top: 20%;
   width: 100%;
   height: 80%;
 }

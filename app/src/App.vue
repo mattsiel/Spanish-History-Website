@@ -8,10 +8,14 @@ import TopBar from '@/components/TopBar.vue'
   <header>
     <TopBar />
   </header>
-
-  <RouterView />
+  <main>
+      <RouterView />
+  </main>
 </template>
 
 <style>
 @import '@/assets/base.css';
+
+header {
+}
 </style>

@@ -7,11 +7,24 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import axios from "axios";
 import { useLocationStore } from '../stores/location.js'
+import { useDateStore } from '../stores/date.js'
 import geoJSON from "../assets/geoJson/spanishCommunities.json";
+// https://codesandbox.io/s/webdesign-dev-test-7cpom
+
 // https://codesandbox.io/s/leaflet-canvas-geojson-click-forked-ksres?file=/index.js
 // https://onthegrid.city/
 // https://geojson.io/#map=8/40.462/-9.635
 
+// For header
+// https://codesandbox.io/s/vw2mko1y7
+
+// card carousel
+// https://codesandbox.io/s/pyqjv5pzzx?file=/src/App.vue
+
+// Other vue stuff to know
+// https://vuejs.org/guide/essentials/lifecycle.html#lifecycle-diagram
+// https://vuejs.org/guide/components/props.html#prop-passing-details
+// https://vuejs.org/guide/essentials/computed.html#basic-example
 
 export default {
   name: "IbeMap",
@@ -24,7 +37,9 @@ export default {
 
     const locations = (await axios.get('http://localhost:3100/location'));
     const local = useLocationStore();
+    const date = useDateStore();
 
+    date.define(1);
     const map = L.map("mapContainer").setView([40, -5], 6);
     L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
       attribution:
@@ -33,16 +48,41 @@ export default {
     //use a mix of renderers
 
 
-    L.geoJSON(geoJSON, {
+    // Assign Geojson
+    if(date === 1){
+      L.geoJSON(geoJSON, {
+      style: { // Define your style object
+        "color": "#110111"
+      },
       onEachFeature: function (feature, layer) {
         let name = feature.properties.name;
         layer.on("click", function (e) {
-           let popup = new L.Popup().setContent(name)
+          let popup = new L.Popup().setContent(name)
           popup.setLatLng(e.latlng);
+          date.define(2);
+          return popup.addTo(map);
+        });
+      }
+      }).addTo(map);
+    } else {
+
+      L.geoJSON(geoJSON, {
+      style: { // Define your style object
+        "color": "#ff0000"
+      },
+      onEachFeature: function (feature, layer) {
+        let name = feature.properties.name;
+        layer.on("click", function (e) {
+          let popup = new L.Popup().setContent(name)
+          popup.setLatLng(e.latlng);
+          date.define(1);
+          console.log(date.print());
           return popup.addTo(map);
         });
       }
     }).addTo(map);
+
+    }
 
     
     // Markers (N,E)
@@ -53,7 +93,7 @@ export default {
     })
     .addTo(map));
 
-/*
+    /*
     function onMapClick(e) {
       let popup = new L.Popup().setContent("You clicked the map at " + e.latlng.toString())
       popup.setLatLng(e.latlng);
@@ -73,6 +113,7 @@ export default {
 
 <style scoped>
 #mapContainer {
+  left:0vw;
   width: 80vw;
   height: 100vh;
   position: absolute;

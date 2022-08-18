@@ -16,6 +16,7 @@ const createFamily = async () => {
   await Family.bulkCreate([
     {
       family_name : 'Barcelona',
+      family_culture : 'Catalan',
       dynasty_id : await dynastyFind('Bellonid'),
       family_head : null,
       family_creator_id : null,
@@ -24,6 +25,7 @@ const createFamily = async () => {
     },
     {
       family_name : 'Ivrea',
+      family_culture : 'Castilian',
       dynasty_id : await dynastyFind('Anscarid'),
       family_head : null,
       family_creator_id : null,
@@ -36,6 +38,7 @@ const createFamily = async () => {
   await Family.bulkCreate([
     {
       family_name : 'Cerdanya',
+      family_culture : 'Catalan',
       dynasty_id : await dynastyFind('Bellonid'),
       family_head : null,
       family_creator_id : null,
@@ -44,6 +47,7 @@ const createFamily = async () => {
     },
     {
       family_name : 'Urgell',
+      family_culture : 'Catalan',
       dynasty_id : await dynastyFind('Bellonid'),
       family_head : null,
       family_creator_id : null,
@@ -56,6 +60,7 @@ const createFamily = async () => {
   await Family.bulkCreate([
     {
       family_name : 'Forcalquier',
+      family_culture : 'Catalan',
       dynasty_id : await dynastyFind('Bellonid'),
       family_head : null,
       family_creator_id : null,

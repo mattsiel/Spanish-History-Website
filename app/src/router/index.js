@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import mapView from '../views/mapView.vue'
+import familyView from '../views/familyView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,7 +26,7 @@ const router = createRouter({
     {
       path: '/family',
       name: 'family',
-      component: () => import('../views/familyView.vue')
+      component: familyView
     },
     {
       path: '/map',

@@ -14,7 +14,7 @@ export default {
 
 <style scoped>
 .item {
-  top:-2rem;
+  top:0;
   height:100%;
   width:100%;
   text-align: center;
@@ -35,6 +35,7 @@ h3 {
   font-weight: 500;
   margin: 0.4rem;
   color: var(--color-heading);
+  height: 100%;
 }
 </style>
 

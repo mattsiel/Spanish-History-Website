@@ -14,10 +14,9 @@ services:
     depends_on:
       - ibe-db
       - ibe-api
-    expose:
-      - 3500
     ports:
      - 3500:3500
+
 
   ibe-db:
     image: ibe-db
