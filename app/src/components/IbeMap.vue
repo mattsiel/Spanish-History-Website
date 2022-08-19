@@ -85,7 +85,7 @@ export default {
 
      L.geoJSON(Portugal_1154, {
       style: { // Define your style object
-        "color": "#000000"
+        "color": "#F78DA7"
       },
       onEachFeature: function (feature, layer) {
         let name = feature.properties.name;
