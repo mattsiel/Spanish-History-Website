@@ -16,7 +16,7 @@ const createDynasty = () => {
       dynasty_start: '0800-01-01',
     },
     {
-      dynasty_name: 'Jiménez',
+      dynasty_name: 'Jimenez',
       dynasty_head: null,
       dynasty_creator_id: null,
       dynasty_start: '0850-01-01',

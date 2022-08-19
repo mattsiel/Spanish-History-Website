@@ -1,6 +1,8 @@
 <script setup>
     import TopBarItem from './TopBarItem.vue';
     import { RouterLink, RouterView } from 'vue-router';
+
+    //     overflow:hidden;
 </script>
 
 <template>
@@ -42,8 +44,7 @@
     background-color: bisque;
     height:4rem;
     width:100%;
-    overflow:hidden;
-    position:sticky;
+    position: sticky;
     display: flex;
 }
 

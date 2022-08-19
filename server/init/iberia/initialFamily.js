@@ -32,6 +32,15 @@ const createFamily = async () => {
       family_start : '0878-01-01',
       cadet_of : null,
     },
+    {
+      family_name : 'Jimenez',
+      family_culture : 'Castilian',
+      dynasty_id : await dynastyFind('Jimenez'),
+      family_head : null,
+      family_creator_id : null,
+      family_start : '0878-01-01',
+      cadet_of : null,
+    },
   ])
 
   // Second Generation Houses
@@ -53,6 +62,24 @@ const createFamily = async () => {
       family_creator_id : null,
       family_start : '0974-01-01',
       cadet_of : await familyFind('Barcelona'),
+    },
+    {
+      family_name : 'Jimenez-Navarre',
+      family_culture : 'Castilian',
+      dynasty_id : await dynastyFind('Jimenez'),
+      family_head : null,
+      family_creator_id : null,
+      family_start : '0878-01-01',
+      cadet_of : await familyFind('Jimenez'),
+    },
+    {
+      family_name : 'Jimenez-Aragon',
+      family_culture : 'Castilian',
+      dynasty_id : await dynastyFind('Jimenez'),
+      family_head : null,
+      family_creator_id : null,
+      family_start : '0878-01-01',
+      cadet_of : await familyFind('Jimenez'),
     },
   ])
 

@@ -2,6 +2,7 @@
 <script>
 import Card from "./Card.vue";
 import axios from "axios";
+
 // https://codesandbox.io/s/cards-in-vue-wc436?file=/src/components/Card.vue
 
 export default {
@@ -11,26 +12,31 @@ export default {
   },
   data: function() {
     return {
-        familiesData: [
-        ]
+        familiesData: {
+        }
     } 
   },
 
   async beforeMount() {
     const families = await axios.get('http://localhost:3100/family');
-
     this.familiesData = families.data;
-    console.log(families.data);
-    console.log(this.familiesData);
 
+    this.familiesData = this.familiesData.map((family) => {
+       const image = `src/assets/coas/House_of_${family.family_name}.svg`;
+       console.log(image);
+       family = {...family, ...{image: image}};
+       return family;
+      }
+    );
+    console.log(this.familiesData);
   }
 };
 </script>
 
 <template>
   <div id="cardbox">
-    <div class="cardcontainer" v-for="family in familiesData">
-      <Card :title=family.family_name series="23" videos="65" :myColor=(family.family_culture.toLowerCase())>
+    <div class="cardcontainer" v-for="family in familiesData" :key=family.family_name>
+      <Card :cardData="family" :vurl="family.image">
       </Card>
     </div>
   </div>
@@ -38,12 +44,21 @@ export default {
 
 <style>
 #cardbox {
-  display: flex;
-  width:20%;
   flex-direction: row;
+  width:100vw;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-x: hidden;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   text-align: center;
   color: #2c3e50;
   margin: 30px;
+  padding:20px;
+}
+
+.cardcontainer {
+  display: flex;
+  flex-direction: column;
+  margin:5px;
 }
 </style>
