@@ -112,7 +112,7 @@ a {
 }
 
 a:hover {
-	 background-color: black;
+	 background-color:#F05340;
 	 color: white;
 }
 

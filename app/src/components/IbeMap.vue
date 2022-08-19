@@ -9,6 +9,7 @@ import axios from "axios";
 import { useLocationStore } from '../stores/location.js'
 import { useDateStore } from '../stores/date.js'
 import geoJSON from "../assets/geoJson/spanishCommunities.json";
+import Portugal_1154 from "../assets/geoJson/Portugal_1154.json";
 // https://codesandbox.io/s/webdesign-dev-test-7cpom
 
 // https://codesandbox.io/s/leaflet-canvas-geojson-click-forked-ksres?file=/index.js
@@ -66,7 +67,7 @@ export default {
       }).addTo(map);
     } else {
 
-      L.geoJSON(geoJSON, {
+    L.geoJSON(geoJSON, {
       style: { // Define your style object
         "color": "#000000"
       },
@@ -81,6 +82,23 @@ export default {
         });
       }
     }).addTo(map);
+
+     L.geoJSON(Portugal_1154, {
+      style: { // Define your style object
+        "color": "#000000"
+      },
+      onEachFeature: function (feature, layer) {
+        let name = feature.properties.name;
+        layer.on("click", function (e) {
+          let popup = new L.Popup().setContent(name)
+          popup.setLatLng(e.latlng);
+          date.define(1);
+          console.log(date.print());
+          return popup.addTo(map);
+        });
+      }
+    }).addTo(map);
+
 
     }
 
