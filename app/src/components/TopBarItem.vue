@@ -1,25 +1,31 @@
 <script>
-export default {
-}
+
+  import { RouterLink, RouterView } from 'vue-router';
+
+  export default {
+    name: "TopBarItem",
+    props: {
+      title: null,
+      router: null,
+    }
+  }
 
 </script>
 
 <template>
-  <div class="item">
-    <h3>
-      <slot name="heading"></slot>
-    </h3>
-  </div>
+    <RouterLink :to=router class="item">
+      <h3>{{ title }}</h3>
+    </RouterLink>
 </template>
 
 <style scoped>
 .item {
   top:0;
-  height:100%;
-  width:100%;
   text-align: center;
   background-color: whitesmoke;
   display: inline-block;
+  flex-grow: 1;
+  justify-content: center;
 }
 
 .item:hover{
@@ -30,13 +36,6 @@ export default {
   background-color: grey;
 }
 
-h3 {
-  font-size: 1.2rem;
-  font-weight: 500;
-  margin: 0.4rem;
-  color: var(--color-heading);
-  height: 100%;
-}
 </style>
 
 

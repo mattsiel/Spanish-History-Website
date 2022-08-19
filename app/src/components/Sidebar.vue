@@ -30,7 +30,7 @@ const local = useLocationStore();
     background-color: white;
     height:100vh;
     right:0%;
-    width:19.5vw;
+    width:29.5vw;
     overflow:hidden;
     position:absolute;
     display: flex;

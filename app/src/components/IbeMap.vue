@@ -114,7 +114,7 @@ export default {
 <style scoped>
 #mapContainer {
   left:0vw;
-  width: 80vw;
+  width: 70vw;
   height: 100vh;
   position: absolute;
 }

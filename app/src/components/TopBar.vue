@@ -1,59 +1,37 @@
-<script setup>
+<script>
     import TopBarItem from './TopBarItem.vue';
-    import { RouterLink, RouterView } from 'vue-router';
-
-    //     overflow:hidden;
 </script>
 
 <template>
-    <div id="topbar" >
-            <RouterLink to="/home" class="topbarbox" >
-                <TopBarItem>
-                    <template #heading>Home</template>
-                </TopBarItem>
-            </RouterLink>
+    <div id="topbar">
 
-            <RouterLink to="/map" class="topbarbox" >
-                <TopBarItem>
-                    <template #heading>Maps</template>
-                </TopBarItem>
-            </RouterLink>
+        <div id="banner">
+            The Iberia Project
+        </div>
 
-             <TopBarItem>
-                    <template #heading>The Iberia Project</template>
-            </TopBarItem>
-
-            <RouterLink to="/family" class="topbarbox" >
-                <TopBarItem>
-                    <template #heading>Families</template>
-                </TopBarItem>
-            </RouterLink>
-
-            <RouterLink to="/about" class="topbarbox" >
-                <TopBarItem>
-                    <template #heading>About</template>
-                </TopBarItem>
-            </RouterLink>
+        <TopBarItem title="Home" router="/home"/>
+        <TopBarItem title="Map" router="/map"/>
+        <TopBarItem title="Families" router="/family"/>
+        <TopBarItem title="About" router="/about"/>
     </div>
 </template>
 
 
 <style>
-#topbar {
-    top:0rem;
-    background-color: bisque;
-    height:4rem;
-    width:100%;
-    position: sticky;
-    display: flex;
+#banner {
+    flex-grow: 5;
+    height:100%;
+    text-align: center;
+    display:inline-block;
 }
 
-.topbarbox{
-    height:100%;
-    width:30%;
-    justify-content: center;
-    display:flex;
-    text-decoration: none;
+
+
+#topbar {
+    position: relative;
+    width: 100vw;
+    height: 4em;
+    background: #F2F2F2;
 }
 
 </style>
