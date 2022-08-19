@@ -8,6 +8,7 @@ export default {
       family_culture: String,
     },
     vurl: String,
+    link: String,
   }
 };
 </script>
@@ -30,10 +31,8 @@ export default {
   flex-direction: column;
   padding: 2px 5px;
   box-shadow: 0px 0px 5px 1px rgba(102, 97, 102, 0.71);
-  border-style: solid;
-  border-width: 5px;
   width: 200px;
-  height: 280px;
+  height: 290px;
   margin:20px;
 
 }
@@ -42,39 +41,33 @@ export default {
 
 }
 .card-title {
-
+  height:1.75em;
+  text-align: center;
 }
 
 .card-info {
   color:#6C6C6C;
-   font-size: .8em;
-
+  font-size: .8em;
 }
 .andalusian {
   border-color: linear-gradient(180deg, #34495e, #41b883);
 }
 .catalan {
-  border-image: 
-    linear-gradient(
-      to bottom, 
-      #6C6C6C,
-      #F05340
-    ) 1 100%;
+  border-top: 0.25em solid #F05340 ;
+  border-bottom: 0.25em solid #F05340 ;
 }
 .castilian {
-    border-image: 
-    linear-gradient(
-      to bottom, 
-      #D9E3F0,
-      #FCB900
-    ) 1 100%;
+  border-top: 0.25em solid #FCB900;
+  border-bottom: 0.25em solid #FCB900;
 }
  
 .basque {
-  border-color: linear-gradient(180deg, #6C6C6C, #FF8A65);
+  border-top: 0.25em solid #FF8A65;
+  border-bottom: 0.25em solid #FF8A65;
 }
 .portuguese {
-  border-color: linear-gradient(180deg, #D9E3F0, #F78DA7);
+  border-top: 0.25em solid #F78DA7;
+  border-bottom: 0.25em solid #F78DA7;
 }
 </style>
 
