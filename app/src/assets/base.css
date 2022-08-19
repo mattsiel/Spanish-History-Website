@@ -5,7 +5,7 @@
 }
 
 :root {
-  font-size: 17px;
+  --font-size: 1.25em;
 
   /* Flat colors */
   --primary-color: #008acb;
@@ -29,8 +29,8 @@
   --primary-btn-bg: linear-gradient(to right, #f8b133, #f29100);
 
   /* Text spacing */
-  --letter-spacing: -0.03em;
-  --line-height: 1.7rem;
+  --letter-spacing: 0em;
+  --line-height: 2.5rem;
 }
 
 html,
@@ -73,7 +73,7 @@ h1 .thinner {
 p,
 li {
   font-weight: 400;
-  font-size: 17px;
+  font-size: var(--font-size);
   font-family: "Open Sans";
   line-height: var(--line-height);
   color: var(--paragraph-color);
@@ -91,6 +91,26 @@ p:first-child {
 
 p:last-child {
   margin-bottom: 0;
+}
+
+.co
+
+.text-box {
+  border-bottom: .25em solid var(--primary-color);
+  border-top: .25em solid var(--primary-color);
+  margin: 1em;
+  padding: 1em;
+  width:40vw;
+
+}
+
+.text-box-alt {
+  border-bottom: .25em solid var(--secondary-color);
+  border-top: .25em solid var(--secondary-color);
+  margin: 1em;
+  padding: 1em;
+  width:80vw;
+
 }
 
 /* Links */
