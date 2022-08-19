@@ -21,7 +21,7 @@ export default {
   >
     <img class="card-image" :src="vurl">
     <span class="card-title">{{ cardData.family_name}}</span>
-    <span class="card-info">{{ cardData.family_info }}</span>
+    <span class="card-info">Kings of Navarre</span>
   </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
   border-style: solid;
   border-width: 5px;
   width: 200px;
-  height: 250px;
+  height: 280px;
   margin:20px;
 
 }
@@ -48,6 +48,8 @@ export default {
 }
 
 .card-info {
+  color:#6C6C6C;
+   font-size: .8em;
 
 }
 .andalusian {
