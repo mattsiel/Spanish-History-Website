@@ -1,17 +1,16 @@
 
 <script>
-import FamilyCards from '../components/FamilyCards.vue';
+import FamilyPage from '../components/FamilyPage.vue';
 
 export default {
   name: "App",
-  components: { FamilyCards },
+  components: { FamilyPage },
 };
-
 </script>
 
 <template>
   <div>
-    <FamilyCards />
+    <FamilyPage ></FamilyPage>
   </div>
 </template>
 

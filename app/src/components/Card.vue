@@ -46,7 +46,7 @@ export default {
 }
 
 .card-info {
-  color:#6C6C6C;
+  color:var(--paragraph-color);
   font-size: .8em;
 }
 .andalusian {

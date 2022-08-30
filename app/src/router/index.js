@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import mapView from '../views/mapView.vue'
 import familyView from '../views/familyView.vue'
+import familyInfoView from '../views/familyInfoView.vue'
 import homeView from '../views/homeView.vue'
 
 const router = createRouter({
@@ -28,6 +29,12 @@ const router = createRouter({
       path: '/family',
       name: 'family',
       component: familyView
+    },
+    {
+      path: '/family/:id',
+      name: 'familyInfo',
+      component: familyInfoView,
+      props: true,
     },
     {
       path: '/map',

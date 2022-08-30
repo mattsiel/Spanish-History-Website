@@ -15,6 +15,7 @@ export default {
         { name: "Family" , link:"/family" },
         { name: "Map" , link:"/map" },
         { name: "About" , link:"/about" },
+        { name: "Home", link:"/home" },
       ],
     };
   },
@@ -112,8 +113,9 @@ a {
 }
 
 a:hover {
-	 background-color:#F05340;
+	 background-color:lightsalmon;
 	 color: white;
+   text-decoration: none;
 }
 
 </style>

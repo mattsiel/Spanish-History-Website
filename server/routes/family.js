@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import { Router } from 'express';
-import Sequelize from 'sequelize';
+import Sequelize, { Op } from 'sequelize';
 import FamilyModel from '../models/family.model.js';
 import sequelize from '../middleware/sequelize.js';
 
@@ -13,12 +13,10 @@ router.get('/', (req, res) => {
   return res.status(200);
 });
 
-router.get('/:id', (req, res) => {
+router.get('find/:id', (req, res) => {
   Family.findAll({ where: { id: req.params.id } }).then((familys) => res.json(familys));
   return res.status(200);
 });
-
-const { Op } = Sequelize;
 
 router.get('/search', (req, res) => {
   Family.findAll({
