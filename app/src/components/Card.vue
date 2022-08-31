@@ -20,11 +20,12 @@ export default {
   >
     <img class="card-image" :src="vurl">
     <span class="card-title">{{ cardData.family_name}}</span>
-    <span class="card-info">Kings of Navarre</span>
+    <span class="card-info">Info Text</span>
   </div>
 </template>
 
 <style scoped>
+
 .card {
   background: #fcf9f9;
   display: flex;
@@ -68,6 +69,16 @@ export default {
 .portuguese {
   border-top: 0.25em solid #F78DA7;
   border-bottom: 0.25em solid #F78DA7;
+}
+
+.galician {
+  border-top: 0.25em solid #89cff0;
+  border-bottom: 0.25em solid #89cff0;
+}
+
+.aragonese {
+  border-top: 0.25em solid #C20114;
+  border-bottom: 0.25em solid #C20114;
 }
 </style>
 

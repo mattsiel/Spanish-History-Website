@@ -10,12 +10,13 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div id="family-view">
     <FamilyCards />
   </div>
 </template>
 
 <style>
 #family-view {
+  overflow-x: hidden;
 }
 </style>

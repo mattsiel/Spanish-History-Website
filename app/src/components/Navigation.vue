@@ -77,7 +77,7 @@ export default {
 	 display: flex;
 	 margin-left: auto;
 	 align-items: center;
-	 overflow: auto;
+	 overflow: hidden;
 }
 .menu-item-container.active {
 	 display: flex;

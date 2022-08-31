@@ -7,6 +7,15 @@
 :root {
   --font-size: 1.25em;
 
+  /* Colors to use in the future
+  #C20114 : venetian red
+  #62C370 : emerald
+  #CC3363 : dogwood rose
+  #20063B : 
+
+
+  */
+
   /* Flat colors */
   --primary-color: #FA824C;
   --secondary-color: #434d5b;
@@ -209,7 +218,7 @@ a:hover {
 
 /* Wrapper */
 
-#wrapper {
+.wrapper {
   width: 100%;
   margin: 0;
   padding: 0;

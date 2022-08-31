@@ -6,12 +6,14 @@ import Navigation from '@/components/Navigation.vue'
 
 
 <template>
-  <header>
-    <Navigation />
-  </header>
-  <main>
-      <RouterView />
-  </main>
+  <div>
+    <header>
+      <Navigation />
+    </header>
+    <main>
+        <RouterView />
+    </main>
+  </div>
 </template>
 
 <style>
@@ -20,8 +22,5 @@ import Navigation from '@/components/Navigation.vue'
 header {
   position:sticky;
 	height: 4em;
-}
-
-main {
 }
 </style>
