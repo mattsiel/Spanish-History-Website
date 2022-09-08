@@ -17,6 +17,7 @@
     data: function() {  
       return {
           keyword: "",
+          selected: "",
           familiesData: {
           }
       } 
@@ -40,7 +41,7 @@
       console.log(this.familiesData);
       console.log(this.keyword);
       return Object.values(this.familiesData).filter(item => {
-        return item.family_name.toLowerCase().includes(this.keyword.toLowerCase());
+        return item.selected.toLowerCase().includes(this.keyword.toLowerCase());
       });
     }
   }

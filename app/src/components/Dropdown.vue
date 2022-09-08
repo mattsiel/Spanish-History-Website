@@ -1,21 +1,31 @@
 <template>
-    <div class="dropdown">
-        <button class="dropbtn">Dropdown</button>
-        <div class="dropdown-content">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
-        </div>
-    </div>
-  </template>
+  <div class="dropdown">
+      <button class="dropbtn">{{ selector }}</button>
+      <div class="dropdown-content" >
+          <div v-for="family in selections" :key="family.id"  class="selection" @click="changeSelector(family)">{{ family.name }}</div>
+      </div>
+  </div>
+</template>
 
 <script>
 export default {
-    data() {
-        return {
-        visible: false,
-        };
+  data() {
+      return {
+        selector:"Name",
+        selections: [
+          { name: "Name", id: "family_name"},
+          { name: "Culture", id: "family_culture"},
+          { name: "Dynasty", id: "dynasty_id"},
+        ],
+      };
+  },
+  methods: {
+    changeSelector(selection) {
+      this.selector = selection.name;
+      this.$emit('changeSelector', this.selector);
+
     }
+  }
 }
 </script>
   
@@ -26,6 +36,7 @@ export default {
   color: white;
   padding: 16px;
   font-size: 16px;
+  width:6vw;
   border: none;
   cursor: pointer;
 }
@@ -40,19 +51,23 @@ export default {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 160px;
+  width:6vw;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
 
-.dropdown-content a {
+.selection {
   color: black;
+  background-color: white;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
 
-.dropdown-content a:hover {background-color: #f1f1f1}
+.selection:hover {
+  background-color: lightgray;
+  color: black;
+}
 
 .dropdown:hover .dropdown-content {
   display: block;
