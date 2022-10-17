@@ -1,9 +1,8 @@
 
 <script>
-  import Card from "./Card.vue";
   import axios from "axios";
+  import Card from "./Card.vue";
   import Dropdown from './Dropdown.vue';
-  import Searchbar from './Searchbar.vue';
 
 // https://codesandbox.io/s/cards-in-vue-wc436?file=/src/components/Card.vue
 
@@ -11,13 +10,12 @@
     name: "FamilyCards",
     components: {
       Card,
-      Dropdown,
-      Searchbar
+      Dropdown
     },
     data: function() {  
       return {
           keyword: "",
-          selected: "",
+          selected: "Name",
           familiesData: {
           }
       } 
@@ -33,15 +31,27 @@
        return family;
       }
     );
+
+  },
+  methods:{
+    ChangeSelector(newSelector){
+      this.selected = newSelector;
+    }
   },
 
   computed: {
-
     filteredList() {
-      console.log(this.familiesData);
-      console.log(this.keyword);
       return Object.values(this.familiesData).filter(item => {
-        return item.selected.toLowerCase().includes(this.keyword.toLowerCase());
+        switch(this.selected) {
+          case 'Name':
+            return item.family_name.toLowerCase().includes(this.keyword.toLowerCase());
+          case 'Dynasty':
+            return item.dynasty_id.toLowerCase().includes(this.keyword.toLowerCase());
+          case 'Culture':
+            return item.family_culture.toLowerCase().includes(this.keyword.toLowerCase());
+          default:
+            return item.family_name.toLowerCase().includes(this.keyword.toLowerCase());
+        }
       });
     }
   }
@@ -49,20 +59,22 @@
 </script>
 
 <template>
-  <div id="cardbox" class="wapper">
-    <div id="card-selector">
+  <div id="cardbox">
+    <div id="card-menu">
       <div class="search-container">
         <input @change='filteredList' v-model="keyword" type="text" placeholder="Search.." >
       </div>
 
-      <Dropdown></Dropdown>
+      <Dropdown @changeSelector="ChangeSelector($event)"></Dropdown>
     </div>
 
-    <div class="cardcontainer" v-for="family in filteredList" :key=family.family_name>
-      <RouterLink :to="{ name: 'familyInfo', params: { id: family.family_name }}">
-        <Card :cardData="family" :vurl="family.image"></Card>
-      </RouterLink>
-    </div>
+    <section id="cards">
+      <div class="cardcontainer" v-for="family in filteredList" :key=family.family_name>
+        <RouterLink :to="{ name: 'familyInfo', params: { id: family.family_name }}">
+          <Card :cardData="family" :vurl="family.image"></Card>
+        </RouterLink>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -72,39 +84,41 @@
   width:100vw;
   display: flex;
   flex-wrap: wrap;
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
   text-align: center;
-  color: #2c3e50;
-  padding-right:5vw;
-  padding-left:5vw;
+  padding-right: var(--relative-padding);
+  padding-left: var(--relative-padding);
 }
-#card-selector {
+
+#cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+}
+
+#card-menu {
   width:100vw;
   height:10vh;
-  padding-top:3vh;
-  padding-bottom:3vh;
-  padding-right:5vw;
-  padding-left:5vw;
 }
 .cardcontainer {
   display: flex;
   flex-direction: column;
-  padding: 2vh;
+  padding: 3vw;
 
 }
 
 .search-container {
-    position: relative;
-    display: inline-block;
-    padding-left:1vw;
-    padding-right:1vw;
-    height:3vh;
+  position: relative;
+  display: inline-block;
+  padding: var(--padding);
+  height:3vh;
 }
 
 input[type=text] {
-  padding: 6px;
-  margin-top: 8px;
-  font-size: 17px;
+  padding: var(--padding);
+  margin-top: 2vh;
+  font-size: 1em;
   border: none;
   height:5vh;
 }

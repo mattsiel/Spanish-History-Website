@@ -1,6 +1,6 @@
 <template>
   <div class="dropdown">
-      <button class="dropbtn">{{ selector }}</button>
+      <button class="dropbutton">{{ selector }}</button>
       <div class="dropdown-content" >
           <div v-for="family in selections" :key="family.id"  class="selection" @click="changeSelector(family)">{{ family.name }}</div>
       </div>
@@ -13,9 +13,8 @@ export default {
       return {
         selector:"Name",
         selections: [
-          { name: "Name", id: "family_name"},
-          { name: "Culture", id: "family_culture"},
-          { name: "Dynasty", id: "dynasty_id"},
+          { name: "Name" },
+          { name: "Culture" },
         ],
       };
   },
@@ -23,44 +22,46 @@ export default {
     changeSelector(selection) {
       this.selector = selection.name;
       this.$emit('changeSelector', this.selector);
-
     }
   }
 }
 </script>
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->
-  <style scoped>
-    .dropbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  width:6vw;
+<style scoped>
+.dropbutton {
+  background-color: var(--button-color);
+  color: var(--background-color);
+  padding: 1vh;
+  width:8vw;
+  height:5vh;
   border: none;
-  cursor: pointer;
+  
+}
+
+.dropdown:hover .dropbutton {
+  background-color: var(--button-hover-color);
 }
 
 .dropdown {
   position: relative;
   display: inline-block;
-  float:inline-end;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  width:6vw;
+  width:100%;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  font-size: 1em;
 }
 
 .selection {
   color: black;
   background-color: white;
-  padding: 12px 16px;
-  text-decoration: none;
+  padding: 1vh;
   display: block;
 }
 
@@ -73,8 +74,5 @@ export default {
   display: block;
 }
 
-.dropdown:hover .dropbtn {
-  background-color: #3e8e41;
-}
-  </style>
+</style>
   

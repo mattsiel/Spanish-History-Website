@@ -27,7 +27,7 @@ const local = useLocationStore();
 #sidebar {
     text-align: center;
     padding: 1vw;
-    background-color: white;
+    background-color: var(--background-color);
     right:0%;
     width:30.5vw;
     position:absolute;

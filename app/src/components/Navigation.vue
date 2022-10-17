@@ -77,12 +77,12 @@ export default {
 	 display: flex;
 	 margin-left: auto;
 	 align-items: center;
-	 overflow: hidden;
+	 overflow-x: hidden;
 }
 .menu-item-container.active {
 	 display: flex;
 	 position: fixed;
-	 top: 4rem;
+	 top: 5vh;
 	 z-index: 1;
 	 background: white;
 	 height: 100%;
@@ -106,15 +106,13 @@ a {
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: black;
   transition: all 0.2s ease-out;
   font-size: 2 em;
   justify-content: center;
 }
 
 a:hover {
-	 background-color:lightsalmon;
-	 color: white;
+	 color: var(--button-hover-color);
    text-decoration: none;
 }
 

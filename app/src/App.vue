@@ -1,6 +1,5 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import TopBar from '@/components/TopBar.vue'
 import Navigation from '@/components/Navigation.vue'
 </script>
 
@@ -20,7 +19,13 @@ import Navigation from '@/components/Navigation.vue'
 @import '@/assets/base.css';
 
 header {
-  position:sticky;
 	height: 4em;
+  width:100vw;
+  position: fixed;
+  z-index: 3;
+}
+
+main {
+  padding-top: 4em;
 }
 </style>
